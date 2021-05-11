@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Toolbar-->
+    <string name="app_name"> </string>
+    <string name="main_title">Relatótio de Célula</string>
+    <string name="add_report_title">Adicionar Relatório</string>
+
+    <string name="nome_da_celula">Nome da célula</string>
+    <string name="nome_do_lider">Nome do líder</string>
+    <string name="nome_do_co_lider">Nome do Colider</string>
+    <string name="nome_do_anfitriao">Nome do anfitrião</string>
+    <string name="membros">Membros</string>
+    <string name="quantidade_de_visitantes">Visitantes</string>
+    <string name="oferta">Oferta</string>
+    <string name="data_da_reuinao">Data da reuinão</string>
+    <string name="estudo_da_celula">Estudo da Célula</string>
+    <string name="label_celula">Célula:</string>
+    <string name="label_lider">Líder:</string>
+    <string name="label_colider">Colider:</string>
+    <string name="label_anfitriao">Anfitrião:</string>
+    <string name="label_membros">Membros:</string>
+    <string name="label_visitantes">Visitantes:</string>
+    <string name="label_oferta">Oferta:</string>
+    <string name="label_data">Data:</string>
+    <string name="label_estudo">Estudo da Célula</string>
+
+    <string name="comentarios_estudo">Versículo e Comentarios à acrescentar sobre o estudo.</string>
+    <string name="salvar">Salvar</string>
+
+    <string name="text_title">Relatórios de Célula</string>
+    <string name="visao_celular">Visão Celular</string>
+    <string name="reports_search">Pesquisar relatórios</string>
+    <string name="add_reports">Acicionar Relatórios</string>
+    <string name="month">Month</string>
+    <string name="report_saved">Seu Relatório foi Salvo</string>
+    <!-- reportEntity error message -->
+    <string name="message_empty_edit">Preenchimento obrigatório</string>
+    <string name="report_error_save">Há campos vazios ou incorretos</string>
+    <string name="str_celula_report">Relatório de Célula</string>
+
+    <string name="money_defout">0,00</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

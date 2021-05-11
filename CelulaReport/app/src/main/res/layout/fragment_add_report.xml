@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.AddReportFragment"
+    android:transitionName="fab_transition"
+    >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/report_pg_tollbar_id"
+            app:titleTextAppearance="@style/Toolbar.TitleText.Collapsed_main"
+            app:titleTextColor="@color/text_color"
+            app:title="@string/add_report_title"
+            app:logo="@drawable/ic_logo_mir"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            >
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/layoutBackground"
+
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_nome_celula"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:endIconMode="clear_text"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:helperText="obrigatório*"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nome_celula_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollHorizontally="true"
+                    android:overScrollMode="always"
+                    android:isScrollContainer="true"
+                    android:hint="@string/nome_da_celula"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_nome_lider"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_nome_celula"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:endIconMode="clear_text"
+                app:helperText="obrigatório*"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nome_lider_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nome_do_lider"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_nome_colider"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_nome_lider"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:endIconMode="clear_text"
+                app:helperText="obrigatório*"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nome_colider_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nome_do_co_lider"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_nome_anfitriao"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_nome_colider"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:endIconMode="clear_text"
+                app:helperText="obrigatório*"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nome_anfitriao_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nome_do_anfitriao"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_data_reuniao"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_nome_anfitriao"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
+                app:endIconDrawable="@drawable/ic_date_range_black_24dp"
+                app:endIconMode="custom"
+                app:endIconTint="@color/colorPrimary"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:helperText="aperte o ícone para escolher a data *"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut"
+                >
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/date_reuniao_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/data_da_reuinao"
+                    android:inputType="date"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_n_membros"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_data_reuniao"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:endIconMode="clear_text"
+                app:helperText="quantidade de membros*"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/n_membros_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/membros"
+                    android:inputType="number"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_n_visitantes"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_n_membros"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:endIconMode="clear_text"
+                app:helperText="quantidade de visitantes na célula*"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/n_visitantes_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/quantidade_de_visitantes"
+                    android:inputType="number"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_oferta"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/layout_n_visitantes"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:counterEnabled="true"
+                app:startIconDrawable="@drawable/ic_brazil_real_symbol"
+                app:startIconTintMode="src_atop"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:helperText="Oferta colida na célula*"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut"
+                app:startIconTint="@color/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/oferta_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/oferta"
+                    android:inputType="number|numberDecimal"
+                    android:padding="@dimen/min_padding"
+                    android:textSize="20sp"
+                    android:text="@string/money_defout" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_estudo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_oferta"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/estudo_da_celula"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_estudo"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/tv_estudo"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:counterEnabled="true"
+                app:startIconTintMode="src_atop"
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true"
+                app:helperText="@string/comentarios_estudo"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/estudo_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/tv_estudo"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="start|top"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding"
+                    android:inputType="textMultiLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/bt_salvar"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/layout_estudo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/salvar"
+                app:elevation="2dp" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="@dimen/weight_card"
+    android:layout_height="@dimen/height_card"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:backgroundTint="@color/secundaryColor"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_margin="@dimen/min_padding"
+    app:cardMaxElevation="5dp"
+    app:cardCornerRadius="@dimen/cardview_radius"
+    app:cardElevation="@dimen/cardview_elevation"
+    app:cardPreventCornerOverlap="false"
+    android:id="@+id/short_report_id">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_img_cardview"
+            android:id="@+id/imag_card"
+            android:src="@mipmap/escala_da_visao"
+            android:scaleType="fitXY"
+            android:gravity="start|bottom"
+            android:contentDescription="@string/visao_celular">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/card_celula_nome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_img_cardview"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/cardview_titleSize"
+            android:fontFamily="monospace"
+            android:gravity="start|bottom"
+            android:padding="@dimen/txt_cardview_padding"
+            android:text="@string/label_celula"/>.
+
+
+        <TextView
+            android:id="@+id/card_lider_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/cardview_textSize"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:padding="@dimen/txt_cardview_padding"
+            android:layout_below="@id/imag_card"
+            android:text="@string/label_lider"/>
+
+        <TextView
+            android:id="@+id/card_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/cardview_textSize"
+            android:textFontWeight="6"
+            android:fontFamily="monospace"
+            android:textColor="@color/text_color"
+            android:gravity="center"
+            android:padding="@dimen/txt_cardview_padding"
+            android:layout_below="@id/card_lider_nome"
+            android:text="@string/data_da_reuinao" tools:targetApi="p" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

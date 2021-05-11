@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/ic_delete_card"
+        android:title="Excluir"
+        android:icon="@drawable/ic_delete_black"
+        app:showAsAction="always"
+        />
+    <item android:id="@+id/ic_share_card"
+        android:title="Compartilhar"
+        android:icon="@drawable/ic_share_black"
+        app:showAsAction="always"
+        app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider"
+        />
+
+</menu>

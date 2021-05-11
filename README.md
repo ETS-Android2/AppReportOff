@@ -10,6 +10,9 @@ This App was developed to make report of _Célula_ (religious meeting) registrin
 ![Snapshot2](./SnapShots/detailsActivity.jpeg)
 
 ---
+
+# Adroid APK
+Android apk exemple to test the App can be dowloaded [here](./CelulaReport/app/build/outputs/apk/debug/app-debug.apk)
 # Licence
 Copyright 2017 The Android Open Source Project, Inc.
 

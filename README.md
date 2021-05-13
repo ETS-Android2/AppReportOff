@@ -15,7 +15,8 @@ This App was developed to make report of _Célula_ (religious meeting) registrin
 Android apk exemple to test the App can be dowloaded [here](./exemple/app-debug.apk)
 
 --
-# Licence
+# License
+
 Copyright 2017 The Android Open Source Project, Inc.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor

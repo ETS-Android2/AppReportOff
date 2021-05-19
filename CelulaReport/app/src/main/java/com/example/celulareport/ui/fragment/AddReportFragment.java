@@ -61,16 +61,10 @@ public class AddReportFragment extends Fragment {
     private TextInputEditText membrosTextInput;
     private TextInputEditText ofertaTextInput;
     private TextInputEditText visitantesTextInput;
-    private TextInputLayout celulaTextInputLayout;
-    private TextInputLayout liderTextInputLayout;
-    private TextInputLayout coliderTextInputLayout;
-    private TextInputLayout anfitriaoTextInputLayout;
+
     private TextInputLayout dateTextInputLayout;
-    private TextInputLayout membrosTextInputLayout;
-    private TextInputLayout ofertaTextInputLayout;
-    private TextInputLayout visitantesTextInputLayout;
+
     private TextInputEditText commitsTextInput;
-    //private TextView commitsTextView;
 
     //date
     private int mDay;
@@ -127,28 +121,22 @@ public class AddReportFragment extends Fragment {
     private void InitializingViews(View v){
         mToolbar = (Toolbar) v.findViewById(R.id.report_pg_tollbar_id);
         celulaTextInput = v.findViewById(R.id.nome_celula_edit);
-        celulaTextInputLayout = v.findViewById(R.id.layout_nome_celula);
 
         liderTextInput = v.findViewById(R.id.nome_lider_edit);
-        liderTextInputLayout = v.findViewById(R.id.layout_nome_lider);
 
         coliderTextInput = v.findViewById(R.id.nome_colider_edit);
-        coliderTextInputLayout = v.findViewById(R.id.layout_nome_colider);
 
         anfitriaoTextInput = v.findViewById(R.id.nome_anfitriao_edit);
-        anfitriaoTextInputLayout = v.findViewById(R.id.layout_nome_anfitriao);
+
 
         dateTextInput = v.findViewById(R.id.date_reuniao_edit);
         dateTextInputLayout = v.findViewById(R.id.layout_data_reuniao);
 
         membrosTextInput = v.findViewById(R.id.n_membros_edit);
-        membrosTextInputLayout = v.findViewById(R.id.layout_n_membros);
 
         visitantesTextInput = v.findViewById(R.id.n_visitantes_edit);
-        visitantesTextInputLayout = v.findViewById(R.id.layout_n_visitantes);
 
         ofertaTextInput = v.findViewById(R.id.oferta_edit);
-        ofertaTextInputLayout = v.findViewById(R.id.layout_oferta);
 
         commitsTextInput = v.findViewById(R.id.estudo_edit);
         saveButton = v.findViewById(R.id.bt_salvar);

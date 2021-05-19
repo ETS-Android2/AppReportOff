@@ -1,21 +1,8 @@
 package com.example.celulareport.ui.activity;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.example.celulareport.db.model.ReportEntity;
 import com.example.celulareport.ui.fragment.MainListFragment;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.example.celulareport.R;
 
 

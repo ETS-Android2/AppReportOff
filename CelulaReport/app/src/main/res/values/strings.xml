@@ -1,10 +1,11 @@
 <resources>
 
     <!-- Toolbar-->
-    <string name="app_name"> </string>
+    <string name="app_name">Relatório de Célula</string>
     <string name="main_title">Relatótio de Célula</string>
     <string name="add_report_title">Adicionar Relatório</string>
 
+    <!-- Add Report forms labels-->
     <string name="nome_da_celula">Nome da célula</string>
     <string name="nome_do_lider">Nome do líder</string>
     <string name="nome_do_co_lider">Nome do Colider</string>
@@ -13,7 +14,9 @@
     <string name="quantidade_de_visitantes">Visitantes</string>
     <string name="oferta">Oferta</string>
     <string name="data_da_reuinao">Data da reuinão</string>
-    <string name="estudo_da_celula">Estudo da Célula</string>
+    <string name="estudo_da_celula">Estudo da Célula/Observações</string>
+
+    <!-- Details report Labels-->
     <string name="label_celula">Célula:</string>
     <string name="label_lider">Líder:</string>
     <string name="label_colider">Colider:</string>

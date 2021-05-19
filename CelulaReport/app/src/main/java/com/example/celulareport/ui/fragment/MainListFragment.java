@@ -29,21 +29,17 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MainListFragment extends Fragment implements LineAdapter.OnLineClickListerner {
 
     private static final String TAG = "MonthRecyclerFragment";
-    private RecyclerView mRecycler;
-    private LineAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
     private ArrayList<String> Months;
     Toolbar mToolbar;
     CollapsingToolbarLayout mCollapsing;
 
-    private FloatingActionButton mFButtonAddReport;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //Initialize data set
         initDataSet();
-
     }
 
 
@@ -58,7 +54,7 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
         SetupToolbar(viewRoot);
 
         //getting floating button
-        mFButtonAddReport = viewRoot.findViewById(R.id.fb_add_report);
+        FloatingActionButton mFButtonAddReport = viewRoot.findViewById(R.id.fb_add_report);
         onCLickFloatingButton(mFButtonAddReport);
         //inflate recycleView
         SetupRecycler(viewRoot);
@@ -82,7 +78,7 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
     //RecycleView settings
     private void SetupRecycler(View viewRoot){
 
-        mRecycler = viewRoot.findViewById(R.id.recycleView_months);
+        RecyclerView mRecycler = viewRoot.findViewById(R.id.recycleView_months);
         /* setting layout manager to the list */
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecycler.setLayoutManager(mLayoutManager);
@@ -90,7 +86,7 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
         //Objects to be adding in the list
 
         //Adding adapter that will be annexe the object in the list
-        mAdapter = new LineAdapter(Months, this);
+        LineAdapter mAdapter = new LineAdapter(Months, this);
         mRecycler.setAdapter(mAdapter);
 
         //adding divisor between lists
@@ -137,23 +133,20 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
 
     public void onCLickFloatingButton(FloatingActionButton mFButtonAddReport){
 
-        mFButtonAddReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mFButtonAddReport.setOnClickListener(v -> {
 
-                AddReportFragment fragment = new AddReportFragment();
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction().setReorderingAllowed(true)
-                        .setCustomAnimations(R.anim.enter_slide_up,
-                                R.anim.exit_fade_freeze,
-                                R.anim.enter_fade_freeze,
-                                R.anim.exit_slide_down)
-                        .replace(R.id.main_container, fragment, fragment.getClass().getName())
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
-            }
+            AddReportFragment fragment = new AddReportFragment();
+            getActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction().setReorderingAllowed(true)
+                    .setCustomAnimations(R.anim.enter_slide_up,
+                            R.anim.exit_fade_freeze,
+                            R.anim.enter_fade_freeze,
+                            R.anim.exit_slide_down)
+                    .replace(R.id.main_container, fragment, fragment.getClass().getName())
+                    .addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit();
         });
     }
 

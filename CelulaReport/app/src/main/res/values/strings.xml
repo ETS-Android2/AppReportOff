@@ -22,9 +22,9 @@
     <string name="label_visitantes">Visitantes:</string>
     <string name="label_oferta">Oferta:</string>
     <string name="label_data">Data:</string>
-    <string name="label_estudo">Estudo da Célula</string>
+    <string name="label_estudo">Estudo da Célula/Observações</string>
 
-    <string name="comentarios_estudo">Versículo e Comentarios à acrescentar sobre o estudo.</string>
+    <string name="comentarios_estudo">Versículo do estudo e/ou Observações que deseje acrescentar sobre a Célua.</string>
     <string name="salvar">Salvar</string>
 
     <string name="text_title">Relatórios de Célula</string>

@@ -153,10 +153,36 @@ public class AddReportFragment extends Fragment {
         commitsTextInput = v.findViewById(R.id.estudo_edit);
         saveButton = v.findViewById(R.id.bt_salvar);
 
+
         //Adding masks
         dateTextInput.addTextChangedListener(MaskEditText.mask(dateTextInput, MaskEditText.FORMAT_DATE));
         //adding money mask on editText
         ofertaTextInput.addTextChangedListener(MaskEditText.mask(ofertaTextInput));
+
+        //Enable scrolling on input Edit text
+        celulaTextInput.setHorizontallyScrolling(true);
+        celulaTextInput.setNestedScrollingEnabled(true);
+
+        liderTextInput.setHorizontallyScrolling(true);
+        liderTextInput.setNestedScrollingEnabled(true);
+
+        coliderTextInput.setHorizontallyScrolling(true);
+        coliderTextInput.setNestedScrollingEnabled(true);
+
+        anfitriaoTextInput.setHorizontallyScrolling(true);
+        anfitriaoTextInput.setNestedScrollingEnabled(true);
+
+        membrosTextInput.setHorizontallyScrolling(true);
+        membrosTextInput.setNestedScrollingEnabled(true);
+
+        visitantesTextInput.setHorizontallyScrolling(true);
+        visitantesTextInput.setNestedScrollingEnabled(true);
+
+        ofertaTextInput.setHorizontallyScrolling(true);
+        ofertaTextInput.setNestedScrollingEnabled(true);
+
+        commitsTextInput.setVerticalScrollBarEnabled(true);
+        commitsTextInput.setNestedScrollingEnabled(true);
 
         //Click date icon dateTextField
         dateTextInputLayout.setEndIconOnClickListener(new View.OnClickListener() {

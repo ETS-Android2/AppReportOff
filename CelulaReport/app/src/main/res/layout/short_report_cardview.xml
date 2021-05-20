@@ -4,30 +4,31 @@
     android:layout_height="@dimen/height_card"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:backgroundTint="@color/secundaryColor"
     android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/short_report_id"
+    android:layout_gravity="center"
     android:layout_margin="@dimen/min_padding"
     app:cardMaxElevation="5dp"
     app:cardCornerRadius="@dimen/cardview_radius"
     app:cardElevation="@dimen/cardview_elevation"
+    app:cardBackgroundColor="@color/secundaryColor"
     app:cardPreventCornerOverlap="false"
-    android:id="@+id/short_report_id">
-
+    >
 
 
     <RelativeLayout
+        android:id="@+id/card_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/imag_card"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_img_cardview"
-            android:id="@+id/imag_card"
-            android:src="@mipmap/escala_da_visao"
-            android:scaleType="fitXY"
+            android:contentDescription="@string/visao_celular"
             android:gravity="start|bottom"
-            android:contentDescription="@string/visao_celular">
+            android:scaleType="fitXY"
+            android:src="@mipmap/escala_da_visao">
 
         </ImageView>
 
@@ -35,38 +36,39 @@
             android:id="@+id/card_celula_nome"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_img_cardview"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/cardview_titleSize"
             android:fontFamily="monospace"
             android:gravity="start|bottom"
             android:padding="@dimen/txt_cardview_padding"
-            android:text="@string/label_celula"/>.
+            android:text="@string/label_celula"
+            android:textColor="@color/card_title_color"
+            android:textSize="@dimen/cardview_titleSize" />.
 
 
         <TextView
             android:id="@+id/card_lider_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/cardview_textSize"
+            android:layout_below="@id/imag_card"
             android:fontFamily="monospace"
             android:gravity="center"
             android:padding="@dimen/txt_cardview_padding"
-            android:layout_below="@id/imag_card"
-            android:text="@string/label_lider"/>
+            android:text="@string/label_lider"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/cardview_textSize" />
 
         <TextView
             android:id="@+id/card_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/cardview_textSize"
-            android:textFontWeight="6"
+            android:layout_below="@id/card_lider_nome"
             android:fontFamily="monospace"
-            android:textColor="@color/text_color"
             android:gravity="center"
             android:padding="@dimen/txt_cardview_padding"
-            android:layout_below="@id/card_lider_nome"
-            android:text="@string/data_da_reuinao" tools:targetApi="p" />
+            android:text="@string/data_da_reuinao"
+            android:textColor="@color/text_color"
+            android:textFontWeight="6"
+            android:textSize="@dimen/cardview_textSize"
+            tools:targetApi="p" />
 
 
     </RelativeLayout>

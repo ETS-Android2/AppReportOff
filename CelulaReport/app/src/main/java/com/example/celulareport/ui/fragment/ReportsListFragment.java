@@ -1,10 +1,15 @@
 package com.example.celulareport.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.media.AudioMetadata;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
@@ -16,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -191,7 +197,7 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
                         .commit();
                 return true;
             default:
-                Toast.makeText(getContext(), "Icon no treated", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Icon no treated", Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -225,9 +231,12 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
                         mViewModel.deleteById(id);
                         mode.finish();
                         return true;
+
                     case R.id.ic_share_card:
+                        Toast.makeText(getContext(), "Shared icon is still Disabled.", Toast.LENGTH_LONG).show();
                         mode.finish();
                         return true;
+
                     default:
                         return false;
                 }
@@ -235,13 +244,15 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
+
+                mCardView.setCardBackgroundColor(Color.parseColor("#455A64"));
+                mCardView = null;
                 mActionMode = null;
             }
         };
 
         return actionCallback;
     }
-
 
     @Override
     public void onCardClick(int position, CardView mCardView) {
@@ -269,20 +280,24 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public boolean onCardLongClick(int position, CardView mCardView) {
-        //FIXME: Disable simple click when actionMode enable or disable actionMode when it happened
 
         if (mActionMode == null){
 
             //trigger menu context
             ActionMode.Callback mCallback = getActionModeCallBack();
             mActionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(mCallback);
-            this.mCardView = mCardView;
-            mCardView.setSelected(true);
             longClickPosition = position;
+            this.mCardView = mCardView;
+            this.mCardView.setCardBackgroundColor(Color.parseColor("#37474F"));
+            this.mCardView.setSelected(true);
+
+
 
         }else {
+
             mCardView.setSelected(false);
             mActionMode.finish();
         }

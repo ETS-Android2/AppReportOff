@@ -2,6 +2,7 @@
 
     <!-- Toolbar-->
     <string name="app_name">Relatório de Célula</string>
+    <string name="activity_name"></string>
     <string name="main_title">Relatótio de Célula</string>
     <string name="add_report_title">Adicionar Relatório</string>
 
@@ -14,7 +15,7 @@
     <string name="quantidade_de_visitantes">Visitantes</string>
     <string name="oferta">Oferta</string>
     <string name="data_da_reuinao">Data da reuinão</string>
-    <string name="estudo_da_celula">Estudo da Célula/Observações</string>
+    <string name="estudo_da_celula">Versículo Bíblico</string>
 
     <!-- Details report Labels-->
     <string name="label_celula">Célula:</string>
@@ -25,7 +26,7 @@
     <string name="label_visitantes">Visitantes:</string>
     <string name="label_oferta">Oferta:</string>
     <string name="label_data">Data:</string>
-    <string name="label_estudo">Estudo da Célula/Observações</string>
+    <string name="label_estudo">Versículo Bíblico:</string>
 
     <string name="comentarios_estudo">Versículo do estudo e/ou Observações que deseje acrescentar sobre a Célua.</string>
     <string name="salvar">Salvar</string>

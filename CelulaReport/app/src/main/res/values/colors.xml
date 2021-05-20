@@ -6,6 +6,8 @@
     <color name="colorAccent">#7E7876</color>
     <color name="layoutBackground">#546E7A</color>
     <color name="text_color">#B0BEC5 </color>
+    <color name="card_title_color">#EBEBEB</color>
+    <color name="details_title_color">#EBEBEB</color>
     <color name="black">#000000</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#7E7876</color>

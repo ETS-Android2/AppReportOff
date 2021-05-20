@@ -1,22 +1,27 @@
 package com.example.celulareport.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.media.AudioMetadata;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -148,6 +153,23 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.main_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.findItem(R.id.ic_reports_search);
+        SearchView searchView = (SearchView) item.getActionView();
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -160,9 +182,7 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
 
 
         switch (item.getItemId()){
-            case R.id.ic_reports_search:
-                Toast.makeText(getContext(), "Click in Searching icon!", Toast.LENGTH_SHORT).show();
-                return true;
+
             case R.id.ic_add_report:
                 //Toast.makeText(getContext(), "Click in add report icon!", Toast.LENGTH_SHORT).show();
                 AddReportFragment fragment = new AddReportFragment();
@@ -175,10 +195,9 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
                         .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
-
                 return true;
             default:
-                Toast.makeText(getContext(), "Icon no treated", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Icon no treated", Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -212,9 +231,12 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
                         mViewModel.deleteById(id);
                         mode.finish();
                         return true;
+
                     case R.id.ic_share_card:
+                        Toast.makeText(getContext(), "Shared icon is still Disabled.", Toast.LENGTH_LONG).show();
                         mode.finish();
                         return true;
+
                     default:
                         return false;
                 }
@@ -222,13 +244,15 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
+
+                mCardView.setCardBackgroundColor(Color.parseColor("#455A64"));
+                mCardView = null;
                 mActionMode = null;
             }
         };
 
         return actionCallback;
     }
-
 
     @Override
     public void onCardClick(int position, CardView mCardView) {
@@ -256,20 +280,24 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public boolean onCardLongClick(int position, CardView mCardView) {
-        //FIXME: Disable simple click when actionMode enable or disable actionMode when it happened
 
         if (mActionMode == null){
 
             //trigger menu context
             ActionMode.Callback mCallback = getActionModeCallBack();
             mActionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(mCallback);
-            this.mCardView = mCardView;
-            mCardView.setSelected(true);
             longClickPosition = position;
+            this.mCardView = mCardView;
+            this.mCardView.setCardBackgroundColor(Color.parseColor("#37474F"));
+            this.mCardView.setSelected(true);
+
+
 
         }else {
+
             mCardView.setSelected(false);
             mActionMode.finish();
         }

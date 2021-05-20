@@ -26,7 +26,6 @@
             app:collapsedTitleGravity="left"
             app:expandedTitleMarginStart="25sp"
             app:expandedTitleMarginTop="25sp"
-
             >
 
             <ImageView
@@ -53,196 +52,241 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/layoutBackground">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/details_linea_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/label_lider"
+                <LinearLayout
+                    android:id="@+id/lider_linear_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_lider"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_lider"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toEndOf="@id/label_lider"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-                <TextView
-                    android:id="@+id/label_colider"
+                    <TextView
+                        android:id="@+id/label_lider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:text="@string/label_lider"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
+
+                    <TextView
+                        android:id="@+id/txt_lider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/colider_linear_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_colider"
-                    android:layout_below="@id/label_lider"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_colider"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toEndOf="@id/label_colider"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:layout_below="@id/txt_lider"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    <TextView
+                        android:id="@+id/label_colider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:text="@string/label_colider"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
 
-                <TextView
-                    android:id="@+id/label_anfitriao"
+                    <TextView
+                        android:id="@+id/txt_colider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/anfitriao_linear_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_anfitriao"
-                    android:layout_below="@id/label_colider"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_anfitriao"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toEndOf="@id/label_anfitriao"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:layout_below="@id/txt_colider"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    <TextView
+                        android:id="@+id/label_anfitriao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:text="@string/label_anfitriao"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
 
-                <TextView
-                    android:id="@+id/label_data"
+                    <TextView
+                        android:id="@+id/txt_anfitriao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/data_linear_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_data"
-                    android:layout_below="@id/label_anfitriao"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_data"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toEndOf="@id/label_data"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:layout_below="@id/txt_anfitriao"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    <TextView
+                        android:id="@+id/label_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:text="@string/label_data"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
 
-                <TextView
-                    android:id="@+id/label_membros"
+                    <TextView
+                        android:id="@+id/txt_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/membros_linear_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_membros"
-                    android:layout_below="@id/label_data"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_membros"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toEndOf="@id/label_membros"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:layout_below="@id/txt_data"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    <TextView
+                        android:id="@+id/label_membros"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:text="@string/label_membros"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
 
-                <TextView
-                    android:id="@+id/label_visitantes"
+                    <TextView
+                        android:id="@+id/txt_membros"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/visitantes_linear_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_visitantes"
-                    android:layout_below="@id/label_membros"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_visitantes"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toEndOf="@id/label_visitantes"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:layout_below="@id/txt_membros"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    <TextView
+                        android:id="@+id/label_visitantes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:text="@string/label_visitantes"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
 
-                <TextView
-                    android:id="@+id/label_oferta"
+                    <TextView
+                        android:id="@+id/txt_visitantes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/oferta_linear_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_oferta"
-                    android:layout_below="@id/label_visitantes"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_oferta"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_toEndOf="@id/label_oferta"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:layout_below="@id/txt_visitantes"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    <TextView
+                        android:id="@+id/label_oferta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:text="@string/label_oferta"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
 
-                <TextView
-                    android:id="@+id/label_estudo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_estudo"
-                    android:layout_below="@id/label_oferta"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                    <TextView
+                        android:id="@+id/txt_oferta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
 
-                <TextView
-                    android:id="@+id/txt_estudo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:layout_below="@id/label_estudo"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+                </LinearLayout>
 
 
-            </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/estudo_linear_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/label_estudo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:padding="@dimen/min_padding"
+                        android:text="@string/label_estudo"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/min_report_textSize" />
+
+                    <TextView
+                        android:id="@+id/txt_estudo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="casual"
+                        android:lines="2"
+                        android:maxLines="10"
+                        android:padding="@dimen/min_padding"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/report_textSize" />
+
+                </LinearLayout>
+
+            </LinearLayout>
         </ScrollView>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

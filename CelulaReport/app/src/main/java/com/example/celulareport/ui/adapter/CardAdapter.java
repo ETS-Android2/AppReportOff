@@ -6,20 +6,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.celulareport.R;
 import com.example.celulareport.db.model.ReportCard;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> implements Filterable {
 
     private List<ReportCard> mReportsByMonth;
+    private List<ReportCard> mReportsByMonthAll;
     private OnCardClickListener onCardClickListener;
     private OnCardLongCLickListener onCardLongCLickListener;
     private Context mContext;
@@ -34,6 +39,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         this.onCardLongCLickListener = cardLongCLickListener;
     }
 
+    public void setReportCardsByMonth(List<ReportCard> mReportsByMonth){
+        this.mReportsByMonth = mReportsByMonth;
+        this.mReportsByMonthAll = new ArrayList<>(mReportsByMonth);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -69,6 +79,49 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         return mReportsByMonth == null ? 0 : mReportsByMonth.size();
     }
 
+    //Filter Recycle card list
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+    //run on background
+    Filter filter =  new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            List<ReportCard> filteredList = new ArrayList<>();
+
+            if(constraint.toString().isEmpty()){
+                filteredList.addAll(mReportsByMonthAll);
+            }else {
+                for(ReportCard reportCard:mReportsByMonthAll){
+                    if(reportCard.getNomeLider().toLowerCase()
+                            .contains(constraint.toString().toLowerCase())||
+                            reportCard.getNomeCelula().toLowerCase()
+                            .contains(constraint.toString().toLowerCase())||
+                            reportCard.getDataReuniao().toLowerCase()
+                            .contains(constraint.toString().toLowerCase())){
+
+                        filteredList.add(reportCard);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+
+            return filterResults;
+        }
+
+        //run on a ui thread
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mReportsByMonth.clear();
+            mReportsByMonth.addAll((Collection<? extends ReportCard>) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
     //Obtain items in card view
     public static class CardHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
@@ -94,16 +147,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
 
         @Override
         public void onClick(View v) {
-            if(getAdapterPosition() != RecyclerView.NO_POSITION){
-                mCardClickListener.onCardClick(getAdapterPosition(), (CardView) v);
+            if(getBindingAdapterPosition() != RecyclerView.NO_POSITION){
+                mCardClickListener.onCardClick(getBindingAdapterPosition(), (CardView) v);
             }
         }
 
         @Override
         public boolean onLongClick(View v) {
-            if(getAdapterPosition() != RecyclerView.NO_POSITION){
+            if(getBindingAdapterPosition() != RecyclerView.NO_POSITION){
 
-                return mCardLongCLickListener.onCardLongClick(getAdapterPosition(), (CardView)v);
+                return mCardLongCLickListener.onCardLongClick(getBindingAdapterPosition(), (CardView)v);
 
             }else return true; //true to don't consider simple click
         }
@@ -123,11 +176,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         return mReportsByMonth.get(position);
     }
 
-    public void setReportCardsByMonth(List<ReportCard> mReportsByMonth){
-        this.mReportsByMonth = mReportsByMonth;
-        notifyDataSetChanged();
-    }
-
     public interface OnCardClickListener{
         public void onCardClick(int position, CardView mCardView);
     }
@@ -135,5 +183,4 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
     public interface OnCardLongCLickListener{
         public boolean onCardLongClick(int position, CardView mCardView);
     }
-
 }

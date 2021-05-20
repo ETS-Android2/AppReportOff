@@ -5,10 +5,11 @@
 
     <item
         android:id="@+id/ic_reports_search"
+        android:title="search"
         android:icon="@drawable/ic_search"
-        android:title="@string/reports_search"
-        app:showAsAction="ifRoom"
-        app:actionViewClass="android.widget.SearchView" />
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        />
 
     <item
         android:id="@+id/ic_add_report"

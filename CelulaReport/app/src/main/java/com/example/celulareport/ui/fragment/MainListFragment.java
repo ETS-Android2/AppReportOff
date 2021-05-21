@@ -66,7 +66,7 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
     private void SetupToolbar(View v){
         mToolbar = (Toolbar) v.findViewById(R.id.main_toolbar);
         mToolbar.setTitle(R.string.main_title);
-        mToolbar.setLogo(R.drawable.ic_logo_mir);
+        mToolbar.setLogo(R.drawable.ic_report);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         mCollapsing = (CollapsingToolbarLayout) v.findViewById(R.id.CollapsingToolbar);
 

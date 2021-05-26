@@ -4,6 +4,7 @@ This App was developed to make report of _Célula_ (religious meeting) registrin
 ---
 
 # SnapShots of the Application.
+![Snapshot0](./SnapShots/splashScreen.jpeg)
 ![Snapshot1](./SnapShots/listActivity.jpeg)
 ![Snapshot2](./SnapShots/addReportActivity.jpeg)
 ![Snapshot2](./SnapShots/cardListActivity.jpeg)
@@ -17,7 +18,7 @@ Android apk exemple to test the App can be dowloaded [here](./exemple/app-debug.
 --
 # License
 
-Copyright 2021 Relatório de Célula - Alfser
+Copyright 2019-2021 Janilson Serra.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for

@@ -127,7 +127,7 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
         mToolbar = (Toolbar) v.findViewById(R.id.reports_toolbar);
         textTitle = (TextView)v.findViewById(R.id.month_title);
         textTitle.setText(title);
-        mToolbar.setLogo(R.drawable.ic_logo_mir);
+        mToolbar.setLogo(R.drawable.ic_report);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         //ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         //actionBar.setDisplayShowTitleEnabled(false);

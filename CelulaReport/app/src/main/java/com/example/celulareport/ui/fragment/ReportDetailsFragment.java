@@ -136,7 +136,7 @@ public class ReportDetailsFragment extends Fragment {
 
     private void SetupToolbar(View v){
 
-        mToolbar.setLogo(R.drawable.ic_logo_mir);
+        mToolbar.setLogo(R.drawable.ic_report);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         mCollapsing.setCollapsedTitleTextAppearance(R.style.Toolbar_TitleText_Collapsed_details);
         mCollapsing.setExpandedTitleTextAppearance(R.style.Toolbar_TitleText_Expanded_details);

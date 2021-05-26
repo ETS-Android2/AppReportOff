@@ -17,7 +17,7 @@
             app:titleTextAppearance="@style/Toolbar.TitleText.Collapsed_main"
             app:titleTextColor="@color/text_color"
             app:title="@string/add_report_title"
-            app:logo="@drawable/ic_logo_mir"
+            app:logo="@drawable/ic_report"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             >

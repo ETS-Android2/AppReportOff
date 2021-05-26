@@ -17,7 +17,7 @@ Android apk exemple to test the App can be dowloaded [here](./exemple/app-debug.
 --
 # License
 
-Copyright 2017 The Android Open Source Project, Inc.
+Copyright 2021 Relatório de Célula - Alfser
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements.  See the NOTICE file distributed with this work for

@@ -2,11 +2,8 @@ package com.example.celulareport.viewmodel;
 
 import android.app.Application;
 
-import com.example.celulareport.ReportsRepository;
-import com.example.celulareport.db.model.ReportCard;
+import com.example.celulareport.db.ReportsRepository;
 import com.example.celulareport.db.model.ReportEntity;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;

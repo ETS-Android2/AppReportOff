@@ -3,6 +3,7 @@ package com.example.celulareport.db.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.sql.Date
 import java.util.*
 
 //BOJO to retrieve information from reports and store ou show in somewhere
@@ -10,10 +11,10 @@ import java.util.*
 data class ReportEntity(
 
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0,
+    var id: Long = 0L,
 
-    @ColumnInfo(name = "is_favorite")
-    var isFavorite: Boolean =false,
+    //@ColumnInfo(name = "is_favorite")
+    //var isFavorite: Boolean =false,
 
     @ColumnInfo(name = "celula")
     var nomeCelula: String,
@@ -31,12 +32,12 @@ data class ReportEntity(
     private var dataReuniao: Date,
 
     @ColumnInfo(name = "n_membros")
-    var numMembros: String,
+    var numMembros: Int,
 
     @ColumnInfo(name = "n_visitantes")
-    var numVisitantes: String,
+    var numVisitantes: Int,
 
-    var oferta: String,
+    var oferta: Float,
 
     var comentarios: String,
 

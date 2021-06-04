@@ -1,29 +1,26 @@
-package com.example.celulareport.viewmodel;
+package com.example.celulareport.viewmodel
 
-import android.app.Application;
+import com.example.celulareport.db.repositories.ReportsRepository
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.celulareport.db.model.ReportEntity
+import kotlinx.coroutines.launch
 
-import com.example.celulareport.db.ReportsRepository;
-import com.example.celulareport.db.model.ReportEntity;
+class ReportDetailsViewModel private constructor(private val repository: ReportsRepository) : ViewModel() {
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
+    fun getReportById(id: Long) = repository.getById(id)
 
-public class ReportsViewModel extends AndroidViewModel {
-    private static final String QUERY_KEY = "QUERY";
-    private long mReportID;
-    private final ReportsRepository mRepository;
+    fun updateReport(report: ReportEntity) = viewModelScope.launch { repository.update(report) }
 
-    public ReportsViewModel(@NonNull Application application) {
-        super(application);
-        this.mRepository = ReportsRepository.getInstance(application);
-    }
+    fun deleteReport(report: ReportEntity) = viewModelScope.launch { repository.delete(report) }
 
-    public LiveData<ReportEntity> ReportSelected(final long mReportID){
-        return mRepository.ReportSelected(mReportID);
-    }
+    companion object{
+        @Volatile private var instance: ReportDetailsViewModel? = null
 
-    public void deleteById(long id){
-        mRepository.deleteById(id);
+        fun getInstance(repository: ReportsRepository){
+            instance?: synchronized(this){
+                instance?:ReportDetailsViewModel(repository).also { instance = it }
+            }
+        }
     }
 }

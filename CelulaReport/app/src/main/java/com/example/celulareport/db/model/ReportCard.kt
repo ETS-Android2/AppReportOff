@@ -2,6 +2,7 @@ package com.example.celulareport.db.model
 
 import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
+import java.sql.Date
 import java.util.*
 
 //BOJO to list of reports contents that from related month

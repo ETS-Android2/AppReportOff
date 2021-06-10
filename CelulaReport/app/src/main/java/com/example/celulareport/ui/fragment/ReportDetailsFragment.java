@@ -39,6 +39,7 @@ public class ReportDetailsFragment extends Fragment {
     TextView mVisitantesText;
     TextView mOfertaText;
     TextView mEstudoText;
+    TextView mCommitsText;
 
     //Toolbar
     Toolbar mToolbar;
@@ -105,7 +106,7 @@ public class ReportDetailsFragment extends Fragment {
         mVisitantesText = v.findViewById(R.id.txt_visitantes);
         mOfertaText = v.findViewById(R.id.txt_oferta);
         mEstudoText = v.findViewById(R.id.txt_estudo);
-
+        mCommitsText = v.findViewById(R.id.txt_commits);
 
         mToolbar = v.findViewById(R.id.toolbar_details);
         mCollapsing = v.findViewById(R.id.collapsing_details);
@@ -131,7 +132,8 @@ public class ReportDetailsFragment extends Fragment {
         mMembrosText.setText(mReport.getNumMembros());
         mVisitantesText.setText(mReport.getNumVisitantes());
         mOfertaText.setText(mReport.getOferta());
-        mEstudoText.setText(mReport.getComentarios());
+        mEstudoText.setText("Falta colocar no banco.");
+        mCommitsText.setText(mReport.getComentarios());
     }
 
     private void SetupToolbar(View v){

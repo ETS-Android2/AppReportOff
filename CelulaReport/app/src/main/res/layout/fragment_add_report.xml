@@ -170,8 +170,7 @@
                 app:helperText="aperte o ícone para escolher a data *"
                 app:helperTextEnabled="true"
                 app:hintTextAppearance="@style/myHintText"
-                app:shapeAppearance="@style/Cut"
-                >
+                app:shapeAppearance="@style/Cut">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -276,22 +275,50 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tv_estudo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/layout_oferta"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/estudo_da_celula"
-                android:textSize="16sp" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_estudo"
                 style="@style/textInputLayoutOutlineStyle"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_oferta"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
+                app:errorIconTintMode="src_over"
+                app:endIconMode="clear_text"
+                app:helperText="obrigatório*"
+                app:helperTextEnabled="true"
+                app:hintTextAppearance="@style/myHintText"
+                app:shapeAppearance="@style/Cut">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/estudo_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/estudo_da_celula"
+                    android:textSize="20sp"
+                    android:padding="@dimen/min_padding" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_commits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_estudo"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/commits"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_commits"
+                style="@style/textInputLayoutOutlineStyle"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_below="@id/tv_estudo"
+                android:layout_below="@id/tv_commits"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
@@ -302,13 +329,13 @@
                 app:helperTextEnabled="true"
                 app:helperText="@string/comentarios_estudo"
                 app:hintTextAppearance="@style/myHintText"
-                app:shapeAppearance="@style/Cut">
+                app:shapeAppearance="@style/Widget.AppCompat.EditText">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/estudo_edit"
+                    android:id="@+id/commits_edit"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_below="@id/tv_estudo"
+                    android:layout_below="@id/tv_commits"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
@@ -324,10 +351,10 @@
                 android:id="@+id/bt_salvar"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
-                android:layout_below="@id/layout_estudo"
+                android:layout_below="@id/layout_commits"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/salvar"

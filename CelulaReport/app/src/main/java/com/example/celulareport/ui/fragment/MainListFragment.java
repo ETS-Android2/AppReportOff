@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.celulareport.R;
-import com.example.celulareport.ui.Constraint;
+import com.example.celulareport.util.Constraint;
 import com.example.celulareport.ui.adapter.LineAdapter;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

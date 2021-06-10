@@ -1,4 +1,4 @@
-package com.example.celulareport.ui;
+package com.example.celulareport.util;
 
 import android.text.Editable;
 import android.text.TextWatcher;

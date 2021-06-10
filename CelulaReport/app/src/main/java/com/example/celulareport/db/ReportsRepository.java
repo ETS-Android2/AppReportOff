@@ -1,10 +1,11 @@
-package com.example.celulareport;
+package com.example.celulareport.db;
 
 import android.app.Application;
 
-import com.example.celulareport.db.model.ReportCard;
+
 import com.example.celulareport.db.model.ReportEntity;
-import com.example.celulareport.db.ReportsRoomDatabase;
+import com.example.celulareport.db.model.ReportCard;
+import com.example.celulareport.util.ApplicationExecutors;
 
 import java.util.List;
 
@@ -49,17 +50,15 @@ public class ReportsRepository {
     }
 
     public void Insert(ReportEntity reportEntity){
-        mExecutors.diskIO().execute(() -> {
-            mReportDatabase.reportDAO().Insert(reportEntity);
-        });
+        mExecutors.diskIO().execute(() -> mReportDatabase.reportDAO().Insert(reportEntity));
     }
 
     public void deleteAll(){
-        mExecutors.diskIO().execute(() -> {mReportDatabase.reportDAO().deleteAll();});
+        mExecutors.diskIO().execute(() -> mReportDatabase.reportDAO().deleteAll());
     }
 
     public void deleteById(long id){
-        mExecutors.diskIO().execute(()->{mReportDatabase.reportDAO().deleteById(id);});
+        mExecutors.diskIO().execute(()-> mReportDatabase.reportDAO().deleteById(id));
     }
 
 }

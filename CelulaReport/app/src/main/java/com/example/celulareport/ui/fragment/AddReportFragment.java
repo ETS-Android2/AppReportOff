@@ -1,6 +1,5 @@
 package com.example.celulareport.ui.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -27,7 +25,7 @@ import android.widget.Toast;
 
 import com.example.celulareport.R;
 import com.example.celulareport.db.model.ReportEntity;
-import com.example.celulareport.ui.MaskEditText;
+import com.example.celulareport.util.MaskEditText;
 import com.example.celulareport.viewmodel.ReportListViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -60,6 +58,7 @@ public class AddReportFragment extends Fragment {
     private TextInputEditText dateTextInput;
     private TextInputEditText membrosTextInput;
     private TextInputEditText ofertaTextInput;
+    private TextInputEditText estudoTextInput;
     private TextInputEditText visitantesTextInput;
 
     private TextInputLayout dateTextInputLayout;
@@ -74,15 +73,6 @@ public class AddReportFragment extends Fragment {
     ReportListViewModel mVieModel;
     public AddReportFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
-
-
     }
 
     @Override
@@ -138,9 +128,11 @@ public class AddReportFragment extends Fragment {
 
         ofertaTextInput = v.findViewById(R.id.oferta_edit);
 
-        commitsTextInput = v.findViewById(R.id.estudo_edit);
-        saveButton = v.findViewById(R.id.bt_salvar);
+        estudoTextInput = v.findViewById(R.id.estudo_edit);
 
+        commitsTextInput = v.findViewById(R.id.commits_edit);
+
+        saveButton = v.findViewById(R.id.bt_salvar);
 
         //Adding masks
         dateTextInput.addTextChangedListener(MaskEditText.mask(dateTextInput, MaskEditText.FORMAT_DATE));
@@ -168,6 +160,9 @@ public class AddReportFragment extends Fragment {
 
         ofertaTextInput.setHorizontallyScrolling(true);
         ofertaTextInput.setNestedScrollingEnabled(true);
+
+        estudoTextInput.setHorizontallyScrolling(true);
+        estudoTextInput.setNestedScrollingEnabled(true);
 
         commitsTextInput.setVerticalScrollBarEnabled(true);
         commitsTextInput.setNestedScrollingEnabled(true);
@@ -289,6 +284,7 @@ public class AddReportFragment extends Fragment {
         String membros;
         String visitantes;
         String oferta;
+        String estudo;
         String commenits;
 
         //Intent to send to another activity
@@ -303,6 +299,7 @@ public class AddReportFragment extends Fragment {
             membros = membrosTextInput.getText().toString();
             visitantes = visitantesTextInput.getText().toString();
             oferta = ofertaTextInput.getText().toString();
+            estudo = estudoTextInput.getText().toString();
             commenits = commitsTextInput.getText().toString().isEmpty()? "" : commitsTextInput.getText().toString();
 
             ReportEntity reportEntity = new ReportEntity();
@@ -315,6 +312,7 @@ public class AddReportFragment extends Fragment {
             reportEntity.setNumMembros(membros);
             reportEntity.setNumVisitantes(visitantes);
             reportEntity.setOferta(oferta);
+            //reportEntity.setEstudo(estudo);
             reportEntity.setComentarios(commenits);
 
             mVieModel.Insert(reportEntity);

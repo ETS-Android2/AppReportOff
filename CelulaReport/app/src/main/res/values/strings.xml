@@ -16,6 +16,7 @@
     <string name="oferta">Oferta</string>
     <string name="data_da_reuinao">Data da reuinão</string>
     <string name="estudo_da_celula">Versículo Bíblico</string>
+    <string name="commits">Comentários Adicionais</string>
 
     <!-- Details report Labels-->
     <string name="label_celula">Célula:</string>

@@ -1,15 +1,11 @@
 package com.example.celulareport.ui.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.media.AudioMetadata;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
@@ -21,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.celulareport.R;
-import com.example.celulareport.ui.Constraint;
+import com.example.celulareport.util.Constraint;
 import com.example.celulareport.ui.adapter.CardAdapter;
 import com.example.celulareport.viewmodel.ReportListViewModel;
 

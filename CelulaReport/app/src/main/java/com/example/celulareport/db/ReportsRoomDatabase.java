@@ -2,7 +2,7 @@ package com.example.celulareport.db;
 
 import android.content.Context;
 
-import com.example.celulareport.ApplicationExecutors;
+import com.example.celulareport.util.ApplicationExecutors;
 import com.example.celulareport.db.model.ReportEntity;
 
 import androidx.annotation.NonNull;

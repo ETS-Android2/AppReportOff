@@ -45,6 +45,28 @@ public class ReportEntity {
     private String numVisitantes;
 
     @NonNull
+    private String oferta;
+
+    @Nullable
+    private String estudo;
+
+    @Nullable
+    private String comentarios;
+
+    public ReportEntity(){
+        comentarios = "";
+        estudo = "";
+    }
+
+    public String getEstudo() {
+        return estudo;
+    }
+
+    public void setEstudo(String estudo) {
+        this.estudo = estudo;
+    }
+
+    @NonNull
     public String getOferta() {
         return oferta;
     }
@@ -53,22 +75,13 @@ public class ReportEntity {
         this.oferta = oferta;
     }
 
-    @NonNull
-    private String oferta;
-
-    @Nullable
-    private String comentarios;
-
-    public ReportEntity(){
-
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) { this.id = id;}
 
+    @NonNull
     public String getNomeCelula() {
         return nomeCelula;
     }
@@ -77,6 +90,7 @@ public class ReportEntity {
         this.nomeCelula = nomeCelula;
     }
 
+    @NonNull
     public String getNomeLider() {
         return nomeLider;
     }
@@ -85,6 +99,7 @@ public class ReportEntity {
         this.nomeLider = nomeLider;
     }
 
+    @NonNull
     public String getNomeColider() {
         return nomeColider;
     }
@@ -93,6 +108,7 @@ public class ReportEntity {
         this.nomeColider = nomeColider;
     }
 
+    @NonNull
     public String getNomeAnfitriao() {
         return nomeAnfitriao;
     }
@@ -101,6 +117,7 @@ public class ReportEntity {
         this.nomeAnfitriao = nomeAnfitriao;
     }
 
+    @NonNull
     public String getDataReuniao() {
 
         return dataReuniao;
@@ -133,6 +150,7 @@ public class ReportEntity {
         this.dataReuniao = dataReuniao;
     }
 
+    @NonNull
     public String getNumMembros() {
         return numMembros;
     }
@@ -141,6 +159,7 @@ public class ReportEntity {
         this.numMembros = numMembros;
     }
 
+    @NonNull
     public String getNumVisitantes() {
         return numVisitantes;
     }
@@ -149,6 +168,7 @@ public class ReportEntity {
         this.numVisitantes = numVisitantes;
     }
 
+    @Nullable
     public String getComentarios() {
         return comentarios;
     }

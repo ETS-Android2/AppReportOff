@@ -63,8 +63,8 @@
         android:id="@+id/recycleView_months"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/month_line"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:listitem="@layout/month_line" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fb_add_report"

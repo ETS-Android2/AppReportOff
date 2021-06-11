@@ -31,6 +31,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class AddReportFragment extends Fragment {
 
@@ -291,15 +292,15 @@ public class AddReportFragment extends Fragment {
         Intent replyIntent = new Intent();
         if (IsValidReport()){
 
-            celula = celulaTextInput.getText().toString();
-            lider = liderTextInput.getText().toString();
-            colider = coliderTextInput.getText().toString();
-            anfitriao = anfitriaoTextInput.getText().toString();
-            data = dateTextInput.getText().toString();
-            membros = membrosTextInput.getText().toString();
-            visitantes = visitantesTextInput.getText().toString();
-            oferta = ofertaTextInput.getText().toString();
-            estudo = estudoTextInput.getText().toString();
+            celula = Objects.requireNonNull(celulaTextInput.getText()).toString();
+            lider = Objects.requireNonNull(liderTextInput.getText()).toString();
+            colider = Objects.requireNonNull(coliderTextInput.getText()).toString();
+            anfitriao = Objects.requireNonNull(anfitriaoTextInput.getText()).toString();
+            data = Objects.requireNonNull(dateTextInput.getText()).toString();
+            membros = Objects.requireNonNull(membrosTextInput.getText()).toString();
+            visitantes = Objects.requireNonNull(visitantesTextInput.getText()).toString();
+            oferta = Objects.requireNonNull(ofertaTextInput.getText()).toString();
+            estudo = Objects.requireNonNull(estudoTextInput.getText()).toString();
             commenits = commitsTextInput.getText().toString().isEmpty()? "" : commitsTextInput.getText().toString();
 
             ReportEntity reportEntity = new ReportEntity();
@@ -312,7 +313,7 @@ public class AddReportFragment extends Fragment {
             reportEntity.setNumMembros(membros);
             reportEntity.setNumVisitantes(visitantes);
             reportEntity.setOferta(oferta);
-            //reportEntity.setEstudo(estudo);
+            reportEntity.setEstudo(estudo);
             reportEntity.setComentarios(commenits);
 
             mVieModel.Insert(reportEntity);

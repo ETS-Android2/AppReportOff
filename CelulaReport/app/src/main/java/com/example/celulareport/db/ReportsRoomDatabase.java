@@ -12,13 +12,15 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {ReportEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {ReportEntity.class}, version = 2, exportSchema = false)
 public abstract class ReportsRoomDatabase extends RoomDatabase {
 
     @VisibleForTesting
     public static final String DATABASE_NAME = "db-reports";
+
 
     //Threads used
     public static ApplicationExecutors mExecutors;
@@ -50,33 +52,16 @@ public abstract class ReportsRoomDatabase extends RoomDatabase {
      */
     private static ReportsRoomDatabase buildDatabase(final Context context,
                                               final ApplicationExecutors executors){
-
-        RoomDatabase.Callback mCallback = new Callback() {
+        //Make migration of database
+         Migration MIGRATION_1_TO_2 = new Migration(1, 2) {
             @Override
-            public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                super.onCreate(db);
-                executors.diskIO().execute(() -> {
-                    // Add a delay to simulate a long-running operation
-                    addDelay();
-                    // Generate the data for pre-population
-                    ReportsRoomDatabase database =  ReportsRoomDatabase.getInstance(context, executors);
-                    // notify that the database was created and it's ready to be used
-                    database.setDatabaseCreated();
-
-                });
-
+            public void migrate(@NonNull SupportSQLiteDatabase database) {
+                database.execSQL("ALTER TABLE report_table ADD COLUMN estudo text;");
             }
         };
 
         return Room.databaseBuilder(context, ReportsRoomDatabase.class, DATABASE_NAME)
-                .addCallback(mCallback).build();
-    }
-
-    private static void addDelay() {
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException ignored) {
-        }
+                .addMigrations(MIGRATION_1_TO_2).build();
     }
 
     /**

@@ -132,7 +132,7 @@ public class ReportDetailsFragment extends Fragment {
         mMembrosText.setText(mReport.getNumMembros());
         mVisitantesText.setText(mReport.getNumVisitantes());
         mOfertaText.setText(mReport.getOferta());
-        mEstudoText.setText("Falta colocar no banco.");
+        mEstudoText.setText(mReport.getEstudo());
         mCommitsText.setText(mReport.getComentarios());
     }
 

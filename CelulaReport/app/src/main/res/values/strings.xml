@@ -28,6 +28,7 @@
     <string name="label_oferta">Oferta:</string>
     <string name="label_data">Data:</string>
     <string name="label_estudo">Versículo Bíblico:</string>
+    <string name="label_commits">Comentários Adicionais</string>
 
     <string name="comentarios_estudo">Versículo do estudo e/ou Observações que deseje acrescentar sobre a Célua.</string>
     <string name="salvar">Salvar</string>

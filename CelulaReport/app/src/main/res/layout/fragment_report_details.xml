@@ -76,7 +76,7 @@
                 android:padding="@dimen/min_padding"
                 android:text="@string/label_lider"
                 android:textColor="@color/text_label"
-                android:textSize="@dimen/report_textSize"
+                android:textSize="@dimen/report_tile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -96,7 +96,7 @@
                 android:padding="@dimen/min_padding"
                 android:text="@string/label_colider"
                 android:textColor="@color/text_label"
-                android:textSize="@dimen/report_textSize"
+                android:textSize="@dimen/report_tile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/label_lider" />
 
@@ -115,7 +115,7 @@
                 android:padding="@dimen/min_padding"
                 android:text="@string/label_anfitriao"
                 android:textColor="@color/text_label"
-                android:textSize="@dimen/report_textSize"
+                android:textSize="@dimen/report_tile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/label_colider" />
 
@@ -134,7 +134,7 @@
                 android:padding="@dimen/min_padding"
                 android:text="@string/label_membros"
                 android:textColor="@color/text_label"
-                android:textSize="@dimen/report_textSize"
+                android:textSize="@dimen/report_tile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/label_anfitriao" />
 
@@ -153,7 +153,7 @@
                 android:padding="@dimen/min_padding"
                 android:text="@string/label_visitantes"
                 android:textColor="@color/text_label"
-                android:textSize="@dimen/report_textSize"
+                android:textSize="@dimen/report_tile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/label_membros" />
 
@@ -172,7 +172,7 @@
                 android:padding="@dimen/min_padding"
                 android:text="@string/label_data"
                 android:textColor="@color/text_label"
-                android:textSize="@dimen/report_textSize"
+                android:textSize="@dimen/report_tile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/label_visitantes" />
 
@@ -210,7 +210,7 @@
                 android:padding="@dimen/min_padding"
                 android:text="@string/label_oferta"
                 android:textColor="@color/text_label"
-                android:textSize="@dimen/report_textSize"
+                android:textSize="@dimen/report_tile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/label_estudo"
                 tools:layout_editor_absoluteY="409dp" />
@@ -230,7 +230,7 @@
                 android:padding="@dimen/min_padding"
                 android:text="@string/label_commits"
                 android:textColor="@color/text_label"
-                android:textSize="@dimen/report_textSize"
+                android:textSize="@dimen/report_tile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/label_oferta"/>
 

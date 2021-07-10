@@ -271,7 +271,7 @@
                     android:inputType="number|numberDecimal"
                     android:padding="@dimen/min_padding"
                     android:textSize="20sp"
-                    android:text="@string/money_defout" />
+                    android:text="@string/money_default" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

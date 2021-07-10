@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:id="@+id/report_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:fontFamily="casual"
-        android:textColor="@color/text_label"
-        android:textSize="@dimen/report_textSize"
-        android:layout_margin="@dimen/max_margin"
-        android:text="@string/report_page_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/report_page_labels" />
 
     <TextView
+        android:id="@+id/report_title"
+        style="@style/report_page_labels"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/max_margin"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="@string/report_page_title"
+        android:textColor="@color/text_label"
+        android:textSize="@dimen/report_page_tile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/label_celula"
         style="@style/report_page_labels"
         android:text="@string/label_celula"
@@ -34,7 +37,7 @@
         app:layout_constraintTop_toTopOf="@id/label_celula"
         />
 
-    <TextView
+    <EditText
         android:id="@+id/label_lider"
         style="@style/report_page_labels"
         android:text="@string/label_lider"
@@ -49,7 +52,7 @@
         app:layout_constraintTop_toTopOf="@id/label_lider"
         />
 
-    <TextView
+    <EditText
         android:id="@+id/label_colider"
         style="@style/report_page_labels"
         android:text="@string/label_colider"
@@ -63,7 +66,7 @@
         app:layout_constraintStart_toEndOf="@id/label_colider"
         app:layout_constraintTop_toTopOf="@id/label_colider" />
 
-    <TextView
+    <EditText
         android:id="@+id/label_anfitriao"
         style="@style/report_page_labels"
         android:text="@string/label_anfitriao"
@@ -77,7 +80,7 @@
         app:layout_constraintStart_toEndOf="@id/label_anfitriao"
         app:layout_constraintTop_toTopOf="@id/label_anfitriao" />
 
-    <TextView
+    <EditText
         android:id="@+id/label_membros"
         style="@style/report_page_labels"
         android:text="@string/label_membros"
@@ -91,7 +94,7 @@
         app:layout_constraintStart_toEndOf="@id/label_membros"
         app:layout_constraintTop_toTopOf="@id/label_membros" />
 
-    <TextView
+    <EditText
         android:id="@+id/label_visitantes"
         style="@style/report_page_labels"
         android:text="@string/label_visitantes"
@@ -105,7 +108,7 @@
         app:layout_constraintStart_toEndOf="@id/label_visitantes"
         app:layout_constraintTop_toTopOf="@id/label_visitantes" />
 
-    <TextView
+    <EditText
         android:id="@+id/label_data"
         style="@style/report_page_labels"
         android:text="@string/label_data"
@@ -119,7 +122,7 @@
         app:layout_constraintStart_toEndOf="@id/label_data"
         app:layout_constraintTop_toTopOf="@id/label_data" />
 
-    <TextView
+    <EditText
         android:id="@+id/label_estudo"
         style="@style/report_page_labels"
         android:text="@string/label_estudo"
@@ -133,7 +136,7 @@
         app:layout_constraintStart_toEndOf="@id/label_estudo"
         app:layout_constraintTop_toTopOf="@id/label_estudo" />
 
-    <TextView
+    <EditText
         android:id="@+id/label_oferta"
         style="@style/report_page_labels"
         android:text="@string/label_oferta"
@@ -147,24 +150,21 @@
         app:layout_constraintStart_toEndOf="@id/label_oferta"
         app:layout_constraintTop_toTopOf="@id/label_oferta" />
 
-    <TextView
+    <EditText
         android:id="@+id/label_commits"
         style="@style/report_page_labels"
         android:layout_marginTop="@dimen/max_margin"
-        android:gravity="center"
         android:text="@string/label_commits"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/label_oferta"/>
 
     <TextView
         android:id="@+id/txt_commits"
-        style="@style/text_page_resp"
-        android:layout_marginTop="@dimen/max_margin"
+        style="@style/text_commit_page_resp"
+        android:layout_marginTop="@dimen/min_margin"
+        android:layout_marginStart="@dimen/max_margin"
+        android:inputType="none"
         android:ems="10"
-        android:enabled="false"
-        android:scrollbars="vertical"
-        android:nestedScrollingEnabled="true"
         android:overScrollMode="always"
         android:hint="@string/commits"
         app:layout_constraintStart_toStartOf="parent"

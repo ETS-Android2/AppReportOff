@@ -58,7 +58,7 @@ public class ReportDetailsFragment extends Fragment {
     TextView mVisitantesText;
     TextView mOfertaText;
     TextView mEstudoText;
-    MultiAutoCompleteTextView mCommitsText;
+    TextView mCommitsText;
 
     //Toolbar
     Toolbar mToolbar;
@@ -202,24 +202,26 @@ public class ReportDetailsFragment extends Fragment {
                 return true;
 
             case R.id.ic_details_share:
-                File pdfFile = createReportPDF();
-                final Uri uri = Uri.fromFile(pdfFile);
-
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Relatório de"+reportEntity.getDataToShow());
-                sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                sendIntent.putExtra(Intent.EXTRA_TITLE, "Relatório de Célula");
-                sendIntent.setType("application/pdf");
-
-                Intent share = Intent.createChooser(sendIntent, getString(R.string.sharing_title));
-                startActivity(share);
-
-                Toast.makeText(getContext(), "Shared icon clicked", Toast.LENGTH_SHORT).show();
+                shareReportPdf();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareReportPdf(){
+        File pdfFile = createReportPDF();
+        final Uri uri = Uri.fromFile(pdfFile);
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Relatório de"+reportEntity.getDataToShow());
+        sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        sendIntent.putExtra(Intent.EXTRA_TITLE, "Relatório de Célula");
+        sendIntent.setType("application/pdf");
+
+        Intent share = Intent.createChooser(sendIntent, getString(R.string.sharing_title));
+        startActivity(share);
     }
 
     @NonNull
@@ -229,7 +231,7 @@ public class ReportDetailsFragment extends Fragment {
         PdfDocument document = new PdfDocument();
 
         // create a page description
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(900, 1424, 1).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1000, 1524, 1).create();
 
         // start a page
         PdfDocument.Page page = document.startPage(pageInfo);
@@ -270,17 +272,17 @@ public class ReportDetailsFragment extends Fragment {
 
 
         //draw according to page size
-        content.measure(900, 1424);
-        content.layout(0, 0, 900, 1424);
+        content.measure(1024, 1600);
+        content.layout(0, 0, 1024, 1600);
         content.draw(page.getCanvas());
 
         // finish the page
         document.finishPage(page);
 
         //create a file do write pdf
-        File path  = Objects.requireNonNull(requireContext()).getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        File path  = Objects.requireNonNull(requireContext()).getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         //String path = "/sdcard/"+"report-"+reportEntity.getDataReuniao()+".pdf";
-        String fileName = "report-"+reportEntity.getDataReuniao()+".pdf";
+        String fileName = reportEntity.getNomeCelula()+reportEntity.getDataReuniao()+".pdf";
         File file = new File(path, fileName);
 
         try {

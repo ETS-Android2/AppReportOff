@@ -19,18 +19,18 @@
     <string name="commits">Comentários Adicionais</string>
 
     <!-- Details report Labels-->
-    <string name="label_celula">Célula : </string>
-    <string name="label_lider">Líder : </string>
-    <string name="label_colider">Colider : </string>
-    <string name="label_anfitriao">Anfitrião : </string>
-    <string name="label_membros">Membros : </string>
-    <string name="label_visitantes">Visitantes : </string>
-    <string name="label_oferta">Oferta : </string>
-    <string name="label_data">Data : </string>
-    <string name="label_estudo">Versículo Bíblico : </string>
-    <string name="label_commits">Comentários Adicionais</string>
+    <string name="label_celula">CÉLULA : </string>
+    <string name="label_lider">LÍDER : </string>
+    <string name="label_colider">ViCE-LIDER : </string>
+    <string name="label_anfitriao">ANFITRIÃO : </string>
+    <string name="label_membros">Nº DE MEMBROS : </string>
+    <string name="label_visitantes">Nº DE VISITANTES : </string>
+    <string name="label_oferta">OFERTA R$: </string>
+    <string name="label_data">DATA : </string>
+    <string name="label_estudo">TEXTO BÍBLICO : </string>
+    <string name="label_commits">OBSERVAÇÕES:</string>
+    <string name="comentarios_estudo">Observações que deseje acrescentar sobre a Célua. Ou Se fez alguma visita na semana.</string>
 
-    <string name="comentarios_estudo">Versículo do estudo e/ou Observações que deseje acrescentar sobre a Célua.</string>
     <string name="salvar">Salvar</string>
 
     <string name="text_title">Relatórios de Célula</string>
@@ -39,12 +39,13 @@
     <string name="add_reports">Acicionar Relatórios</string>
     <string name="month">Month</string>
     <string name="report_saved">Seu Relatório foi Salvo</string>
+
     <!-- reportEntity error message -->
     <string name="message_empty_edit">Preenchimento obrigatório</string>
     <string name="report_error_save">Há campos vazios ou incorretos</string>
     <string name="str_celula_report">Relatório de Célula</string>
 
-    <string name="money_defout">0,00</string>
+    <string name="money_default">0,00</string>
     <string name="floatting_button_desc">Open add report screen</string>
     <string name="sharing_title">Compartilhar Relarório</string>
     <string name="report_page_title">Relatório de Célula</string>

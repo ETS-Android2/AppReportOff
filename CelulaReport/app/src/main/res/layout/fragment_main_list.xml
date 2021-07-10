@@ -73,14 +73,14 @@
         android:src="@drawable/ic_add_report"
         android:clickable="true"
         android:focusable="true"
-        android:layout_margin="@dimen/min_padding"
-        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/min_margin"
+        android:layout_gravity="bottom|end"
         android:foregroundGravity="bottom|right"
-        app:layout_anchorGravity="right|bottom"
-        app:backgroundTint="@color/text_color"
+        app:layout_anchorGravity="start|bottom"
+        app:backgroundTint="@color/floating_button"
         android:transitionName="fab_transition"
         app:rippleColor="@color/colorPrimary"
-         />
+        android:contentDescription="@string/floatting_button_desc" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

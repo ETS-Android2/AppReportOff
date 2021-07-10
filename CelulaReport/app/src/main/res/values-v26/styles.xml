@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Toolbar.TitleText.Collapsed_details" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColor">@color/text_app</item>
         <item name="android:textSize">22sp</item>
         <item name="fontFamily">casual</item>
     </style>

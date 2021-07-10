@@ -15,7 +15,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/report_pg_tollbar_id"
             app:titleTextAppearance="@style/Toolbar.TitleText.Collapsed_main"
-            app:titleTextColor="@color/text_color"
+            app:titleTextColor="@color/text_app"
             app:title="@string/add_report_title"
             app:logo="@drawable/ic_report"
             android:layout_width="match_parent"

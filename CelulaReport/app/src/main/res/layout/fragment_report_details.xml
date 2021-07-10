@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.ReportDetailsFragment"
-    android:background="@color/layoutBackground">
+    android:background="@color/layoutBackground"
+    tools:context=".ui.fragment.ReportDetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:liftOnScroll="true">
@@ -18,7 +19,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_details"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:collapsedTitleGravity="left"
             app:contentScrim="?attr/colorPrimary"
@@ -56,269 +57,197 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
+    <androidx.core.widget.NestedScrollView
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:background="@color/layoutBackground">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/details_linea_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            android:nestedScrollingEnabled="true"
-            android:orientation="vertical"
-            android:baselineAligned="false"
-            >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_report_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/layoutBackground">
 
-            <LinearLayout
-                android:id="@+id/lider_linear_layout"
+            <TextView
+                android:id="@+id/label_lider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_lider"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/label_lider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_lider"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+            <TextView
+                android:id="@+id/txt_lider"
+                style="@style/text_resp"
+                app:layout_constraintBottom_toBottomOf="@id/label_lider"
+                app:layout_constraintStart_toEndOf="@id/label_lider"
+                app:layout_constraintTop_toTopOf="@id/label_lider"
+                 />
 
-                <TextView
-                    android:id="@+id/txt_lider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/colider_linear_layout"
+            <TextView
+                android:id="@+id/label_colider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_colider"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_lider" />
 
-                <TextView
-                    android:id="@+id/label_colider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_colider"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+            <TextView
+                android:id="@+id/txt_colider"
+                style="@style/text_resp"
+                app:layout_constraintBottom_toBottomOf="@id/label_colider"
+                app:layout_constraintStart_toEndOf="@id/label_colider"
+                app:layout_constraintTop_toTopOf="@id/label_colider" />
 
-                <TextView
-                    android:id="@+id/txt_colider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/anfitriao_linear_layout"
+            <TextView
+                android:id="@+id/label_anfitriao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_anfitriao"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_colider" />
 
-                <TextView
-                    android:id="@+id/label_anfitriao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_anfitriao"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+            <TextView
+                android:id="@+id/txt_anfitriao"
+                style="@style/text_resp"
+                app:layout_constraintBottom_toBottomOf="@id/label_anfitriao"
+                app:layout_constraintStart_toEndOf="@id/label_anfitriao"
+                app:layout_constraintTop_toTopOf="@id/label_anfitriao" />
 
-                <TextView
-                    android:id="@+id/txt_anfitriao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/data_linear_layout"
+            <TextView
+                android:id="@+id/label_membros"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_membros"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_anfitriao" />
 
-                <TextView
-                    android:id="@+id/label_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_data"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+            <TextView
+                android:id="@+id/txt_membros"
+                style="@style/text_resp"
+                app:layout_constraintBottom_toBottomOf="@id/label_membros"
+                app:layout_constraintStart_toEndOf="@id/label_membros"
+                app:layout_constraintTop_toTopOf="@id/label_membros" />
 
-                <TextView
-                    android:id="@+id/txt_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/membros_linear_layout"
+            <TextView
+                android:id="@+id/label_visitantes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_visitantes"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_membros" />
 
-                <TextView
-                    android:id="@+id/label_membros"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_membros"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+            <TextView
+                android:id="@+id/txt_visitantes"
+                style="@style/text_resp"
+                app:layout_constraintBottom_toBottomOf="@id/label_visitantes"
+                app:layout_constraintStart_toEndOf="@id/label_visitantes"
+                app:layout_constraintTop_toTopOf="@id/label_visitantes" />
 
-                <TextView
-                    android:id="@+id/txt_membros"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/visitantes_linear_layout"
+            <TextView
+                android:id="@+id/label_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_data"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_visitantes" />
 
-                <TextView
-                    android:id="@+id/label_visitantes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_visitantes"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+            <TextView
+                android:id="@+id/txt_data"
+                style="@style/text_resp"
+                app:layout_constraintBottom_toBottomOf="@id/label_data"
+                app:layout_constraintStart_toEndOf="@id/label_data"
+                app:layout_constraintTop_toTopOf="@id/label_data" />
 
-                <TextView
-                    android:id="@+id/txt_visitantes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/oferta_linear_layout"
+            <TextView
+                android:id="@+id/label_estudo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_estudo"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/min_report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_data" />
 
-                <TextView
-                    android:id="@+id/label_oferta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_oferta"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+            <TextView
+                android:id="@+id/txt_estudo"
+                style="@style/text_resp"
+                app:layout_constraintBottom_toBottomOf="@id/label_estudo"
+                app:layout_constraintStart_toEndOf="@id/label_estudo"
+                app:layout_constraintTop_toTopOf="@id/label_estudo" />
 
-                <TextView
-                    android:id="@+id/txt_oferta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/estudo_linear_layout"
+            <TextView
+                android:id="@+id/label_oferta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_oferta"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_estudo"
+                tools:layout_editor_absoluteY="409dp" />
 
-                <TextView
-                    android:id="@+id/label_estudo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_estudo"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/min_report_textSize" />
+            <TextView
+                android:id="@+id/txt_oferta"
+                style="@style/text_resp"
+                app:layout_constraintBottom_toBottomOf="@id/label_oferta"
+                app:layout_constraintStart_toEndOf="@id/label_oferta"
+                app:layout_constraintTop_toTopOf="@id/label_oferta" />
 
-                <TextView
-                    android:id="@+id/txt_estudo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:lines="2"
-                    android:maxLines="10"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/commits_details_layout"
+            <TextView
+                android:id="@+id/label_commits"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:fontFamily="casual"
+                android:padding="@dimen/min_padding"
+                android:text="@string/label_commits"
+                android:textColor="@color/text_label"
+                android:textSize="@dimen/report_textSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_oferta"/>
 
-                <TextView
-                    android:id="@+id/label_commits"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:text="@string/label_commits"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+            <MultiAutoCompleteTextView
+                android:id="@+id/txt_commits"
+                style="@style/text_resp"
+                android:ems="10"
+                android:enabled="false"
+                android:scrollbars="vertical"
+                android:nestedScrollingEnabled="true"
+                android:overScrollMode="always"
+                android:inputType="textMultiLine"
+                android:hint="@string/commits"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_commits" />
 
-                <TextView
-                    android:id="@+id/txt_commits"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:padding="@dimen/min_padding"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/report_textSize" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

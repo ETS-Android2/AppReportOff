@@ -36,7 +36,7 @@
             android:id="@+id/card_celula_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_label"
             android:textSize="@dimen/cardview_titleSize"
             android:fontFamily="monospace"
             android:gravity="center"
@@ -46,7 +46,7 @@
             android:id="@+id/card_lider_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_label"
             android:textSize="@dimen/cardview_textSize"
             android:fontFamily="monospace"
             android:gravity="center"
@@ -59,7 +59,7 @@
             android:textSize="@dimen/cardview_textSize"
             android:textFontWeight="6"
             android:fontFamily="monospace"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_label"
             android:gravity="center"
             android:text="@string/data_da_reuinao"/>
 

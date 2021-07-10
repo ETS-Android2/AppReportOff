@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="min_padding">15dp</dimen>
+    <dimen name="min_padding">5dp</dimen>
+    <dimen name="min_margin">10dp</dimen>
+    <dimen name="max_margin">30dp</dimen>
     <dimen name="max_padding">30dp</dimen>
     <dimen name="padding_from_label">20dp</dimen>
     <dimen name="padding_start">20dp</dimen>

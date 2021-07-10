@@ -5,7 +5,11 @@
     <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#7E7876</color>
     <color name="layoutBackground">#546E7A</color>
-    <color name="text_color">#B0BEC5 </color>
+    <color name="text_app">#B0BEC5</color>
+    <color name="report_icon">#B0BEC5</color>
+    <color name="floating_button">#B0BEC5</color>
+    <color name="text_label">#37474F</color>
+    <color name="text_resp">#B0BEC5</color>
     <color name="card_title_color">#EBEBEB</color>
     <color name="details_title_color">#EBEBEB</color>
     <color name="black">#000000</color>

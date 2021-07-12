@@ -1,15 +1,25 @@
 package com.example.celulareport.ui.fragment;
 
+import android.Manifest;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -28,6 +38,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,11 +52,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.MessageFormat;
 import java.util.Objects;
 
 public class ReportDetailsFragment extends Fragment {
 
     private static final String REPORT_ID= "REPORT_ID";
+    private static final String URI_PROVIDER_AUTHORITY= "com.example.fileprovider";
     //ViewModel to get report selected
     private ReportsViewModel mViewModel;
 
@@ -64,11 +77,16 @@ public class ReportDetailsFragment extends Fragment {
     Toolbar mToolbar;
     CollapsingToolbarLayout mCollapsing;
 
+    //progress
+    private ProgressBar progressBar;
     //Id of report
     private long mReportID;
     private ReportEntity reportEntity;
 
     private View viewRoot;
+
+    //for permission
+    private ActivityResultLauncher<String> requestPermissionLauncher;
 
     public ReportDetailsFragment() {
         // Required empty public constructor
@@ -89,15 +107,14 @@ public class ReportDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        //Just for propose test
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
-        builder.detectFileUriExposure();
+        requestPermissionLauncher = getPermissionCallback();
 
         if(getArguments() != null){
             mReportID = getArguments().getLong(REPORT_ID);
         }else {
-            Toast.makeText(getContext(), "Relório não existe no banco de dados ", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),
+                    R.string.report_not_found,
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -139,6 +156,8 @@ public class ReportDetailsFragment extends Fragment {
 
         mToolbar = v.findViewById(R.id.toolbar_details);
         mCollapsing = v.findViewById(R.id.collapsing_details);
+
+        progressBar = v.findViewById(R.id.progress_details);
 
     }
 
@@ -202,42 +221,129 @@ public class ReportDetailsFragment extends Fragment {
                 return true;
 
             case R.id.ic_details_share:
-                shareReportPdf();
+                shareWithPermissionGranted();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @NonNull
+    private ActivityResultLauncher<String> getPermissionCallback() {
+        return registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(), isGranted -> {
+                    if (isGranted) {
+
+                        progressBar.setVisibility(View.VISIBLE);
+                        Thread thread = new Thread(){
+                            @Override
+                            public void run() {
+                                shareReportPdf();
+                            }
+                        };
+
+                        thread.start();
+                    } else {
+                        Toast.makeText(getContext(), R.string.explaining_why_feature_is_unavalible, Toast.LENGTH_LONG).show();
+                    }
+                }
+            );
+    }
+
+    private void shareWithPermissionGranted(){
+        if(ContextCompat.checkSelfPermission(requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                PackageManager.PERMISSION_GRANTED){
+
+            //show progress bar
+            progressBar.setVisibility(View.VISIBLE);
+
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    shareReportPdf();
+                }
+            };
+            thread.start();
+        } else if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)){
+            Toast.makeText(getContext(), R.string.study_for_permission_requested, Toast.LENGTH_LONG).show();
+        }else{
+            requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+    }
+
     private void shareReportPdf(){
+
         File pdfFile = createReportPDF();
-        final Uri uri = Uri.fromFile(pdfFile);
+        final Uri uri = FileProvider.getUriForFile(requireContext(), URI_PROVIDER_AUTHORITY, pdfFile);
 
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Relatório de"+reportEntity.getDataToShow());
-        sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        sendIntent.putExtra(Intent.EXTRA_TITLE, "Relatório de Célula");
-        sendIntent.setType("application/pdf");
+        requireActivity().runOnUiThread(() -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Relatório de"+reportEntity.getDataToShow());
+            sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            sendIntent.putExtra(Intent.EXTRA_TITLE, "Relatório de Célula");
+            sendIntent.setType("application/pdf");
 
-        Intent share = Intent.createChooser(sendIntent, getString(R.string.sharing_title));
-        startActivity(share);
+            Intent share = Intent.createChooser(sendIntent, getString(R.string.sharing_title));
+
+            progressBar.setVisibility(View.GONE);
+            startActivity(share);
+        });
     }
 
     @NonNull
     private File createReportPDF(){
 
+        int width = 1000;
+        int height = 1524;
+
         // create a new document
         PdfDocument document = new PdfDocument();
 
         // create a page description
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1000, 1524, 1).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(width, height, 1).create();
 
         // start a page
         PdfDocument.Page page = document.startPage(pageInfo);
 
         // draw something on the page
         //View content = viewRoot.findViewById(R.id.layout_report_details);
+
+        View contentView = getContentView(width, height);
+        Canvas canvas = page.getCanvas();
+
+        //draw border in page
+        Paint rect = new Paint();
+        contentView.draw(canvas);
+        // finish the page
+        document.finishPage(page);
+
+        //create a file do write pdf
+        File path  = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        String fileName = reportEntity.getNomeCelula()+reportEntity.getDataReuniao()+".pdf";
+        File file = new File(path, fileName);
+
+        try {
+            OutputStream outputStream = new FileOutputStream(file);
+            document.writeTo(outputStream);
+
+            requireActivity().runOnUiThread(() ->
+                    Toast.makeText(requireContext(), getString(R.string.pdf_generated) + file.getPath(), Toast.LENGTH_SHORT).show()
+            );
+            // write the document content
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // close the document
+        document.close();
+
+        return file;
+    }
+
+    @NonNull
+    private View getContentView(int width, int height){
 
         View content = View.inflate(getContext(), R.layout.report_page, null);
         TextView celula = content.findViewById(R.id.txt_celula);
@@ -270,37 +376,10 @@ public class ReportDetailsFragment extends Fragment {
         TextView comentarios = content.findViewById(R.id.txt_commits);
         comentarios.setText(reportEntity.getComentarios());
 
-
         //draw according to page size
-        content.measure(1024, 1600);
-        content.layout(0, 0, 1024, 1600);
-        content.draw(page.getCanvas());
+        content.measure(width, height);
+        content.layout(0, 0, width, height);
 
-        // finish the page
-        document.finishPage(page);
-
-        //create a file do write pdf
-        File path  = Objects.requireNonNull(requireContext()).getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-        //String path = "/sdcard/"+"report-"+reportEntity.getDataReuniao()+".pdf";
-        String fileName = reportEntity.getNomeCelula()+reportEntity.getDataReuniao()+".pdf";
-        File file = new File(path, fileName);
-
-        try {
-            OutputStream outputStream = new FileOutputStream(file);
-            document.writeTo(outputStream);
-            // write the document content
-            Toast.makeText(getActivity(), "PDF file generated successfully. Local: "+file.getPath(), Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-        // close the document
-        document.close();
-
-        return file;
+        return content;
     }
-
-
 }

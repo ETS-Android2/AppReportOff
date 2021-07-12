@@ -49,5 +49,10 @@
     <string name="floatting_button_desc">Open add report screen</string>
     <string name="sharing_title">Compartilhar Relarório</string>
     <string name="report_page_title">Relatório de Célula</string>
+    <string name="explaining_why_feature_is_unavalible">O compartilhamento de relatório não poderá ser usado. Sem a permissão de criação e acesso ao arquivo de relatório.</string>
+    <string name="study_for_permission_requested">Para compartilhar o relatório o aplicativo precisará criar um arquivo PDF e lê-lo do aparelho.</string>
+    <string name="report_not_found">\"Relório não existe no banco de dados \"</string>
+    <string name="pdf_generated">Um Arquivo de PDF foi gerado para o compartilhamento. </string>
+    <string name="img_repor_descr">report icon</string>
 
 </resources>

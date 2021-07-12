@@ -50,6 +50,12 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+    <ProgressBar
+        android:id="@+id/progress_reports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 
 </FrameLayout>

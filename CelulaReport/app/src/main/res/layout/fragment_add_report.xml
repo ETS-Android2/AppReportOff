@@ -64,7 +64,7 @@
                     android:isScrollContainer="true"
                     android:hint="@string/nome_da_celula"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding"
+                    android:padding="@dimen/med_padding"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/nome_do_lider"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding" />
+                    android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/nome_do_co_lider"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding" />
+                    android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/nome_do_anfitriao"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding" />
+                    android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -180,7 +180,7 @@
                     android:hint="@string/data_da_reuinao"
                     android:inputType="date"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding"/>
+                    android:padding="@dimen/med_padding"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -209,7 +209,7 @@
                     android:hint="@string/membros"
                     android:inputType="number"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding" />
+                    android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -238,7 +238,7 @@
                     android:hint="@string/quantidade_de_visitantes"
                     android:inputType="number"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding" />
+                    android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -269,7 +269,7 @@
                     android:layout_height="match_parent"
                     android:hint="@string/oferta"
                     android:inputType="number|numberDecimal"
-                    android:padding="@dimen/min_padding"
+                    android:padding="@dimen/med_padding"
                     android:textSize="20sp"
                     android:text="@string/money_default" />
 
@@ -300,7 +300,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/estudo_da_celula"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding" />
+                    android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -342,24 +342,20 @@
                     android:layout_marginBottom="20dp"
                     android:gravity="start|top"
                     android:textSize="20sp"
-                    android:padding="@dimen/min_padding"
+                    android:padding="@dimen/med_padding"
                     android:inputType="textMultiLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/bt_salvar"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layout_commits"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_margin="@dimen/max_margin"
                 android:text="@string/salvar"
                 app:elevation="2dp" />
-
 
         </RelativeLayout>
 

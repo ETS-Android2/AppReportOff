@@ -23,13 +23,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.celulareport.R;
+import com.example.celulareport.db.model.ReportCard;
+import com.example.celulareport.db.model.ReportEntity;
 import com.example.celulareport.util.Constraint;
 import com.example.celulareport.ui.adapter.CardAdapter;
 import com.example.celulareport.viewmodel.ReportListViewModel;
+
+import java.util.List;
+
+import static androidx.appcompat.view.ActionMode.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,13 +54,11 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
 
     private CardAdapter mAdapter;
 
-    private Toolbar mToolbar;
-
-    private TextView textTitle;
-
     private CardView mCardView;
 
     private ReportListViewModel mViewModel;
+
+    private ProgressBar progressBar;
 
     // Get position item when long click is activate
     int longClickPosition;
@@ -97,6 +102,9 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
 
         mRecycler = v.findViewById(R.id.rv_report_list);
 
+        //get Progress Bar
+        progressBar = v.findViewById(R.id.progress_reports);
+
         //Setup toolbar as actionbar
         SetupToolbar(mMonth, v);
         return v;
@@ -117,17 +125,15 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
     }
 
     //Setup toolbar and collapsing bar
-    @SuppressLint("RestrictedApi")
-    private void SetupToolbar(String title, View v){
-        mToolbar = (Toolbar) v.findViewById(R.id.reports_toolbar);
-        textTitle = (TextView)v.findViewById(R.id.month_title);
+    private void SetupToolbar(String title, @NonNull View v){
+        Toolbar mToolbar = (Toolbar) v.findViewById(R.id.reports_toolbar);
+        TextView textTitle = (TextView) v.findViewById(R.id.month_title);
         textTitle.setText(title);
         mToolbar.setLogo(R.drawable.ic_report);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity)requireActivity()).setSupportActionBar(mToolbar);
         //ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         //actionBar.setDisplayShowTitleEnabled(false);
         //actionBar.setDisplayHomeAsUpEnabled(true);
-
     }
 
     //Adding recycleView(list of reports)
@@ -138,14 +144,10 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
         mRecycler.setLayoutManager(layoutManager);
         mAdapter = new CardAdapter(getContext(), this, this);
         mRecycler.setAdapter(mAdapter);
-        //divisor between cards
-        //mRecycler.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        //mRecycler.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
-
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.main_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
         MenuItem item = menu.findItem(R.id.ic_reports_search);
@@ -161,7 +163,15 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter().filter(newText);
+                progressBar.setVisibility(View.VISIBLE);
+                new Thread(){
+                    @Override
+                    public void run() {
+                        mAdapter.getFilter().filter(newText);
+                        requireActivity().runOnUiThread(()->progressBar.setVisibility(View.GONE));
+                    }
+                }.start();
+
                 return false;
             }
         });
@@ -175,13 +185,10 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-
-        switch (item.getItemId()){
-
-            case R.id.ic_add_report:
+            if(item.getItemId() == R.id.ic_add_report){
                 //Toast.makeText(getContext(), "Click in add report icon!", Toast.LENGTH_SHORT).show();
                 AddReportFragment fragment = new AddReportFragment();
-                getActivity()
+                requireActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .setReorderingAllowed(true)
@@ -191,21 +198,18 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 return true;
-            default:
-                //Toast.makeText(getContext(), "Icon no treated", Toast.LENGTH_SHORT).show();
-                break;
         }
 
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
     // menu context when we have a long click in the card
-    public ActionMode.Callback getActionModeCallBack(){
+    public Callback getActionModeCallBack(){
 
 
-        ActionMode.Callback actionCallback= new ActionMode.Callback() {
+        return new Callback() {
             @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            public boolean onCreateActionMode(@NonNull ActionMode mode, Menu menu) {
                 mode.getMenuInflater().inflate(R.menu.card_context_menu, menu);
                 mode.setTitle("opções");
                 return true;
@@ -218,7 +222,7 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
             }
 
             @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            public boolean onActionItemClicked(ActionMode mode, @NonNull MenuItem item) {
 
                 switch (item.getItemId()){
                     case R.id.ic_delete_card:
@@ -245,8 +249,6 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
                 mActionMode = null;
             }
         };
-
-        return actionCallback;
     }
 
     @Override
@@ -260,7 +262,7 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
             reportID = mAdapter.getReportId(position);
 
             ReportDetailsFragment fragment = ReportDetailsFragment.newInstance(reportID);
-            getActivity()
+            requireActivity()
                     .getSupportFragmentManager()
                     .beginTransaction()
                     .setReorderingAllowed(true)
@@ -275,15 +277,14 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
         }
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public boolean onCardLongClick(int position, CardView mCardView) {
 
         if (mActionMode == null){
 
             //trigger menu context
-            ActionMode.Callback mCallback = getActionModeCallBack();
-            mActionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(mCallback);
+            Callback mCallback = getActionModeCallBack();
+            mActionMode = ((AppCompatActivity)requireActivity()).startSupportActionMode(mCallback);
             longClickPosition = position;
             this.mCardView = mCardView;
             this.mCardView.setCardBackgroundColor(Color.parseColor("#37474F"));
@@ -342,26 +343,41 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
                 return monthValue = Constraint.VALUE_DECEMBER;
 
             default:
-                throw new NullPointerException("Value don't exist!");
+                break;
         }
 
-
+        return monthValue;
     }
 
     //observe changes in report cards list
     public void subscribeReportList(ReportListViewModel viewModel, String monthSelect){
 
         try {
-
             //Verify month value to query by it
             String monthValue = returnMonthValue(monthSelect);
             //select reports by month and observe changes in that
+            progressBar.setVisibility(View.VISIBLE);
             viewModel.getReportsByMonth(monthValue).observe(getViewLifecycleOwner(), reportCards -> {
-                mAdapter.setReportCardsByMonth(reportCards);
+                new Thread(){
+                    @Override
+                    public void run() {
+
+                        //a few delay
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        //change ui state
+                        requireActivity().runOnUiThread(()->{
+                            mAdapter.setReportCardsByMonth(reportCards);
+                            progressBar.setVisibility(View.GONE);});
+                    }
+                }.start();
             });
 
         } catch (NullPointerException exception){
-            Toast.makeText(getContext(),exception.getMessage().toString(), Toast.LENGTH_LONG);
+            exception.printStackTrace();
         }
     }
 

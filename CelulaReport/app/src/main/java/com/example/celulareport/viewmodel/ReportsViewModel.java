@@ -23,8 +23,12 @@ public class ReportsViewModel extends AndroidViewModel {
         this.mRepository.update(reportEntity);
     }
 
-    public LiveData<ReportEntity> ReportSelected(final long mReportID){
-        return mRepository.ReportSelected(mReportID);
+    public LiveData<ReportEntity> reportSelected(long mReportID){
+        return mRepository.reportSelected(mReportID);
+    }
+
+    public void Insert(ReportEntity reportEntity){
+        mRepository.Insert(reportEntity);
     }
 
     public void deleteById(long id){

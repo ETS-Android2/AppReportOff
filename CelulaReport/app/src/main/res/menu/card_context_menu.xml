@@ -7,11 +7,5 @@
         android:icon="@drawable/ic_delete_black"
         app:showAsAction="always"
         />
-    <item android:id="@+id/ic_share_card"
-        android:title="Compartilhar"
-        android:icon="@drawable/ic_share_black"
-        app:showAsAction="always"
-        app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider"
-        />
 
 </menu>

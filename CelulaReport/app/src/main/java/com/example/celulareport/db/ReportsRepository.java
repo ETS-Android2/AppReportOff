@@ -45,7 +45,7 @@ public class ReportsRepository {
         return mReportDatabase.reportDAO().getReportsByMonth(month);
     }
 
-    public LiveData<ReportEntity> ReportSelected(final long id){
+    public LiveData<ReportEntity> reportSelected(long id){
         return mReportDatabase.reportDAO().selectedReport(id);
     }
 

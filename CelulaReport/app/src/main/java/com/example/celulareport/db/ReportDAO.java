@@ -27,7 +27,7 @@ public interface ReportDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void Insert(ReportEntity reportEntity);
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(ReportEntity reportEntity);
     
     @Query("DELETE FROM report_table")

@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.celulareport.R;
+import com.example.celulareport.util.AlertDialogsUtil;
 import com.example.celulareport.util.Constraint;
 import com.example.celulareport.ui.adapter.CardAdapter;
 import com.example.celulareport.viewmodel.ReportListViewModel;
@@ -39,7 +40,7 @@ import static androidx.appcompat.view.ActionMode.*;
 public class ReportsListFragment extends Fragment implements CardAdapter.OnCardClickListener, CardAdapter.OnCardLongCLickListener {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_MONTH = "Month";
+    private static final String ARG_MONTH = "com.example.celulaReport.Month";
 
     private String mMonth;
 
@@ -217,31 +218,35 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
             @Override
             public boolean onActionItemClicked(ActionMode mode, @NonNull MenuItem item) {
 
-                switch (item.getItemId()){
-                    case R.id.ic_delete_card:
-                        long id = mAdapter.getReportId(longClickPosition);
-                        mViewModel.deleteById(id);
-                        mode.finish();
-                        return true;
-
-                    case R.id.ic_share_card:
-                        Toast.makeText(getContext(), "Shared icon is still Disabled.", Toast.LENGTH_LONG).show();
-                        mode.finish();
-                        return true;
-
-                    default:
-                        return false;
+                if(item.getItemId() == R.id.ic_delete_card){
+                    deleteReport();
+                    mode.finish();
+                    return true;
                 }
+
+                return false;
             }
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
 
+                //change color back to the normal
                 mCardView.setCardBackgroundColor(Color.parseColor("#455A64"));
                 mCardView = null;
                 mActionMode = null;
             }
         };
+    }
+
+    public void deleteReport(){
+        AlertDialogsUtil.DeleteDialog(requireContext())
+                .setPositiveButton(getString(R.string.delete_button_dialog), (dialog, which) -> {
+                    long id = mAdapter.getReportId(longClickPosition);
+                    mViewModel.deleteById(id);
+                    Toast.makeText(requireContext(), R.string.deleted_dialog_message, Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(getString(R.string.cancel_button_dialog), (dialog, which) -> {
+                }).show();
     }
 
     @Override

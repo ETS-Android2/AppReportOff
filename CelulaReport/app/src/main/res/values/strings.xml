@@ -63,5 +63,11 @@
     <string name="share_icon">Compartilhar</string>
     <string name="edit_icon">editar relatório</string>
     <string name="delete_icon">excluir relatório</string>
+    <string name="delete_button_dialog">Excluir</string>
+    <string name="cancel_button_dialog">cancelar</string>
+    <string name="cancel_dialog_msg">ação cancelada</string>
+    <string name="deleted_dialog_message">Relatório excuido com sucesso</string>
+    <string name="delete_dialog_title">Excluir Relatório</string>
+    <string name="delete_dialog_desc">Confime se você deseja excluir este relatório</string>
 
 </resources>

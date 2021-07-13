@@ -31,8 +31,4 @@ public class ReportListViewModel extends AndroidViewModel {
     public void deleteById(long id){
         mRepository.deleteById(id);
     }
-
-    public void deleteAll(){
-        mRepository.deleteAll();
-    }
 }

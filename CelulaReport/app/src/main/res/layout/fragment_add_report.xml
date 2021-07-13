@@ -42,6 +42,7 @@
                 app:errorEnabled="true"
                 app:errorIconTintMode="src_over"
                 app:helperText="@string/helper_required"
+                android:hint="@string/nome_da_celula"
                 app:helperTextEnabled="true"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -53,7 +54,6 @@
                     android:scrollHorizontally="true"
                     android:overScrollMode="always"
                     android:isScrollContainer="true"
-                    android:hint="@string/nome_da_celula"
                     android:textSize="20sp"
                     android:padding="@dimen/med_padding"
                     />
@@ -68,6 +68,7 @@
                 app:errorIconTintMode="src_over"
                 app:endIconMode="clear_text"
                 app:helperText="@string/helper_required"
+                android:hint="@string/nome_do_lider"
                 app:helperTextEnabled="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout_nome_celula">
@@ -75,7 +76,6 @@
                     android:id="@+id/nome_lider_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/nome_do_lider"
                     android:textSize="20sp"
                     android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -88,6 +88,7 @@
                 app:errorIconTintMode="src_over"
                 app:endIconMode="clear_text"
                 app:helperText="@string/helper_required"
+                android:hint="@string/nome_do_co_lider"
                 app:helperTextEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/layout_nome_lider"
                 app:layout_constraintStart_toStartOf="parent">
@@ -95,7 +96,6 @@
                     android:id="@+id/nome_colider_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/nome_do_co_lider"
                     android:textSize="20sp"
                     android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -108,6 +108,7 @@
                 app:errorIconTintMode="src_over"
                 app:endIconMode="clear_text"
                 app:helperText="@string/helper_required"
+                android:hint="@string/nome_do_anfitriao"
                 app:helperTextEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/layout_nome_colider"
                 app:layout_constraintStart_toStartOf="parent">
@@ -116,7 +117,6 @@
                     android:id="@+id/nome_anfitriao_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/nome_do_anfitriao"
                     android:textSize="20sp"
                     android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -132,6 +132,7 @@
                 app:errorEnabled="true"
                 app:errorIconTintMode="src_over"
                 app:helperText="@string/helper_data_meeting"
+                android:hint="@string/data_da_reuinao"
                 app:helperTextEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/layout_nome_anfitriao"
                 app:layout_constraintStart_toStartOf="parent">
@@ -141,7 +142,6 @@
                     android:id="@+id/date_reuniao_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/data_da_reuinao"
                     android:inputType="date"
                     android:textSize="20sp"
                     android:padding="@dimen/med_padding"/>
@@ -155,6 +155,7 @@
                 app:errorIconTintMode="src_over"
                 app:endIconMode="clear_text"
                 app:helperText="@string/helper_member"
+                android:hint="@string/membros"
                 app:helperTextEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/layout_data_reuniao"
                 app:layout_constraintStart_toStartOf="parent">
@@ -163,7 +164,6 @@
                     android:id="@+id/n_membros_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/membros"
                     android:inputType="number"
                     android:textSize="20sp"
                     android:padding="@dimen/med_padding" />
@@ -177,6 +177,7 @@
                 app:errorIconTintMode="src_over"
                 app:endIconMode="clear_text"
                 app:helperText="@string/helper_guest"
+                android:hint="@string/quantidade_de_visitantes"
                 app:helperTextEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/layout_n_membros"
                 app:layout_constraintStart_toStartOf="parent">
@@ -185,7 +186,6 @@
                     android:id="@+id/n_visitantes_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/quantidade_de_visitantes"
                     android:inputType="number"
                     android:textSize="20sp"
                     android:padding="@dimen/med_padding" />
@@ -201,6 +201,7 @@
                 app:errorEnabled="true"
                 app:errorIconTintMode="src_over"
                 app:helperText="@string/helper_oferta"
+                android:hint="@string/oferta"
                 app:helperTextEnabled="true"
                 app:startIconTint="@color/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@id/layout_n_visitantes"
@@ -210,7 +211,6 @@
                     android:id="@+id/oferta_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/oferta"
                     android:inputType="number|numberDecimal"
                     android:padding="@dimen/med_padding"
                     android:textSize="20sp"
@@ -226,6 +226,7 @@
                 app:errorIconTintMode="src_over"
                 app:endIconMode="clear_text"
                 app:helperText="@string/helper_required"
+                android:hint="@string/estudo_da_celula"
                 app:helperTextEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/layout_oferta"
                 app:layout_constraintStart_toStartOf="parent">
@@ -234,7 +235,6 @@
                     android:id="@+id/estudo_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/estudo_da_celula"
                     android:textSize="20sp"
                     android:padding="@dimen/med_padding" />
             </com.google.android.material.textfield.TextInputLayout>

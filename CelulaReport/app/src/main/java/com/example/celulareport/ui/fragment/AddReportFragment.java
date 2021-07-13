@@ -2,7 +2,6 @@ package com.example.celulareport.ui.fragment;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,20 +21,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.celulareport.R;
 import com.example.celulareport.db.model.ReportEntity;
 import com.example.celulareport.util.MaskEditText;
-import com.example.celulareport.viewmodel.ReportListViewModel;
+import com.example.celulareport.viewmodel.ReportsViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public class AddReportFragment extends Fragment {
 
@@ -62,15 +59,28 @@ public class AddReportFragment extends Fragment {
     private int mMonth;
     private int mYear;
 
-    ReportListViewModel mVieModel;
-    public AddReportFragment() {
-        // Required empty public constructor
+    private ReportsViewModel mVieModel;
+
+    protected long reportId= -1;
+
+    public static String ARG_REPORT = "com.example.celulareport.Report";
+
+    public static AddReportFragment newInstance(long reportId) {
+        AddReportFragment fragment = new AddReportFragment();
+        Bundle args = new Bundle();
+        args.putLong(ARG_REPORT, reportId);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        if(getArguments() != null){
+            reportId = getArguments().getLong(ARG_REPORT);
+        }
     }
 
     @Override
@@ -78,13 +88,6 @@ public class AddReportFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_add_report, container, false);
-
-        //Initializing input edit texts in of the report
-        InitializingViews(v);
-
-        //Getting toolbar, adding logo icon and setting as actionbar
-        SetupToolbar();
-
         //Initializing with current date
         Calendar calendar = Calendar.getInstance();
         mYear = calendar.get(Calendar.YEAR);
@@ -98,7 +101,17 @@ public class AddReportFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mVieModel = new ViewModelProvider(requireActivity()).get(ReportListViewModel.class);
+        //Initializing input edit texts in of the report
+        initViews(view);
+
+        //Getting toolbar, adding logo icon and setting as actionbar
+        SetupToolbar();
+
+        mVieModel = new ViewModelProvider(this).get(ReportsViewModel.class);
+
+        if(reportId > -1){
+            initUpdateReport();
+        }
     }
 
     @Override
@@ -116,13 +129,14 @@ public class AddReportFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void SetupToolbar(){
         ((AppCompatActivity)requireActivity()).setSupportActionBar(mToolbar);
     }
 
     //Initializing Views objects and Set listeners
-    private void InitializingViews(View v){
-        mToolbar = (Toolbar) v.findViewById(R.id.report_pg_tollbar_id);
+    private void initViews(@NonNull View v){
+        mToolbar = v.findViewById(R.id.report_pg_tollbar_id);
         celulaTextInput = v.findViewById(R.id.nome_celula_edit);
 
         liderTextInput = v.findViewById(R.id.nome_lider_edit);
@@ -177,15 +191,26 @@ public class AddReportFragment extends Fragment {
 
         commitsTextInput.setVerticalScrollBarEnabled(true);
         commitsTextInput.setNestedScrollingEnabled(true);
-
         //Click date icon dateTextField
-        dateTextInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Focus on EditText before show datePickerDialog
-                //show datePicker to choose the date of meeting
-                chooseDate(dateTextInput);
-            }
+        dateTextInputLayout.setEndIconOnClickListener(v1 -> {
+            //Focus on EditText before show datePickerDialog
+            //show datePicker to choose the date of meeting
+            chooseDate(dateTextInput);
+        });
+    }
+
+    private void initUpdateReport() {
+        mVieModel.reportSelected(reportId).observe(getViewLifecycleOwner(), entity ->{
+            celulaTextInput.setText(entity.getNomeCelula());
+            liderTextInput.setText(entity.getNomeLider());
+            coliderTextInput.setText(entity.getNomeColider());
+            anfitriaoTextInput.setText(entity.getNomeAnfitriao());
+            membrosTextInput.setText(entity.getNumMembros());
+            visitantesTextInput.setText(entity.getNumVisitantes());
+            dateTextInput.setText(entity.getDataToShow());
+            estudoTextInput.setText(entity.getEstudo());
+            ofertaTextInput.setText(entity.getOferta());
+            commitsTextInput.setText(entity.getComentarios());
         });
     }
 
@@ -286,16 +311,16 @@ public class AddReportFragment extends Fragment {
 
         if (IsValidReport()){
 
-            celula = Objects.requireNonNull(celulaTextInput.getText()).toString();
-            lider = Objects.requireNonNull(liderTextInput.getText()).toString();
-            colider = Objects.requireNonNull(coliderTextInput.getText()).toString();
-            anfitriao = Objects.requireNonNull(anfitriaoTextInput.getText()).toString();
-            data = Objects.requireNonNull(dateTextInput.getText()).toString();
-            membros = Objects.requireNonNull(membrosTextInput.getText()).toString();
-            visitantes = Objects.requireNonNull(visitantesTextInput.getText()).toString();
-            oferta = Objects.requireNonNull(ofertaTextInput.getText()).toString();
-            estudo = Objects.requireNonNull(estudoTextInput.getText()).toString();
-            commenits = Objects.requireNonNull(commitsTextInput.getText()).toString().isEmpty()? "" : commitsTextInput.getText().toString();
+            celula = requireNonNull(celulaTextInput.getText()).toString();
+            lider = requireNonNull(liderTextInput.getText()).toString();
+            colider = requireNonNull(coliderTextInput.getText()).toString();
+            anfitriao = requireNonNull(anfitriaoTextInput.getText()).toString();
+            data = requireNonNull(dateTextInput.getText()).toString();
+            membros = requireNonNull(membrosTextInput.getText()).toString();
+            visitantes = requireNonNull(visitantesTextInput.getText()).toString();
+            oferta = requireNonNull(ofertaTextInput.getText()).toString();
+            estudo = requireNonNull(estudoTextInput.getText()).toString();
+            commenits = requireNonNull(commitsTextInput.getText()).toString().isEmpty()? "" : commitsTextInput.getText().toString();
 
             ReportEntity reportEntity = new ReportEntity();
 
@@ -310,7 +335,13 @@ public class AddReportFragment extends Fragment {
             reportEntity.setEstudo(estudo);
             reportEntity.setComentarios(commenits);
 
-            mVieModel.Insert(reportEntity);
+            if(reportId  > -1){
+                //identity of entity will be updated
+                reportEntity.setId(reportId);
+                mVieModel.update(reportEntity);
+            }else {
+                mVieModel.Insert(reportEntity);
+            }
 
             Toast.makeText(requireContext(), R.string.report_saved, Toast.LENGTH_SHORT).show();
             //finish fragment

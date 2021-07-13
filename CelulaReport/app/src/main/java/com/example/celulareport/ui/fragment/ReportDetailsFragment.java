@@ -1,12 +1,9 @@
 package com.example.celulareport.ui.fragment;
 
 import android.Manifest;
-import android.content.ClipData;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
@@ -16,19 +13,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Environment;
-import android.os.Parcelable;
-import android.os.StrictMode;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,25 +29,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.celulareport.R;
 import com.example.celulareport.db.model.ReportEntity;
+import com.example.celulareport.util.AlertDialogsUtil;
 import com.example.celulareport.viewmodel.ReportsViewModel;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.text.MessageFormat;
-import java.util.Objects;
 
 public class ReportDetailsFragment extends Fragment {
 
@@ -134,7 +122,7 @@ public class ReportDetailsFragment extends Fragment {
         registerReportSelected(mViewModel);
 
         //Text Views Contain reports details
-        getViewObjects(view);
+        initViewObjects(view);
 
         //Setup toolbar
         SetupToolbar(view);
@@ -158,10 +146,7 @@ public class ReportDetailsFragment extends Fragment {
         switch(item.getItemId()){
 
             case R.id.ic_delete:
-                deleteReport(mReportID);
-                requireActivity().getSupportFragmentManager()
-                        .popBackStackImmediate();
-                Toast.makeText(requireContext(), "Delete action clicked", Toast.LENGTH_SHORT).show();
+                deleteReport();
                 return true;
 
             case R.id.ic_details_share:
@@ -169,15 +154,14 @@ public class ReportDetailsFragment extends Fragment {
                 return true;
 
             case R.id.ic_edit:
-
-                Toast.makeText(requireContext(), "Edit action clicked", Toast.LENGTH_SHORT).show();
+                startEditReport();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void  getViewObjects(@NonNull View v){
+    public void initViewObjects(@NonNull View v){
         mLiderText = v.findViewById(R.id.txt_lider);
         mColiderText = v.findViewById(R.id.txt_colider);
         mAnfitriaoText = v.findViewById(R.id.txt_anfitriao);
@@ -197,7 +181,7 @@ public class ReportDetailsFragment extends Fragment {
 
     public void registerReportSelected(ReportsViewModel viewModel){
         //get report selected
-        viewModel.ReportSelected(mReportID).observe(getViewLifecycleOwner(), this::addingReportDetails);
+        viewModel.reportSelected(mReportID).observe(getViewLifecycleOwner(), this::addingReportDetails);
     }
 
 
@@ -215,18 +199,36 @@ public class ReportDetailsFragment extends Fragment {
         mOfertaText.setText(mReport.getOferta());
         mEstudoText.setText(mReport.getEstudo());
         mCommitsText.setText(mReport.getComentarios());
-
-        Log.i("ReportDetailsFragment", "Commit Text: "+mReport.getComentarios());
     }
 
-    public void updateReport(ReportEntity reportEntity){
-        mViewModel.update(reportEntity);
+    public void startEditReport(){
+
+        AddReportFragment fragment = AddReportFragment.newInstance(mReportID);
+        requireActivity()
+                .getSupportFragmentManager()
+                .beginTransaction().setReorderingAllowed(true)
+                .setCustomAnimations(R.anim.enter_slide_up,
+                        R.anim.exit_fade_freeze,
+                        R.anim.enter_fade_freeze,
+                        R.anim.exit_slide_down)
+                .replace(R.id.main_container, fragment, fragment.getClass().getName())
+                .addToBackStack(AddReportFragment.class.getName())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 
-    public void deleteReport(long reportId){
+    public void deleteReport(){
 
-        //TODO: Create dialog alert
-        mViewModel.deleteById(reportId);
+        AlertDialogsUtil.DeleteDialog(requireContext())
+                .setPositiveButton(getString(R.string.delete_button_dialog), (dialog, which) -> {
+                    mViewModel.deleteById(mReportID);
+
+                    requireActivity().getSupportFragmentManager()
+                            .popBackStackImmediate();
+                    Toast.makeText(requireContext(), R.string.deleted_dialog_message, Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(getString(R.string.cancel_button_dialog), (dialog, which) -> {
+                }).show();
     }
 
     private void SetupToolbar(View v){
@@ -338,10 +340,6 @@ public class ReportDetailsFragment extends Fragment {
         try {
             OutputStream outputStream = new FileOutputStream(file);
             document.writeTo(outputStream);
-
-            requireActivity().runOnUiThread(() ->
-                    Toast.makeText(requireContext(), getString(R.string.pdf_generated) + file.getPath(), Toast.LENGTH_SHORT).show()
-            );
             // write the document content
         } catch (IOException e) {
             e.printStackTrace();

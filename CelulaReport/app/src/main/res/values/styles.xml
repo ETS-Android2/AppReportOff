@@ -69,21 +69,22 @@
     </style>
 
     <style name="text_resp">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">25dp</item>
         <item name="android:fontFamily">casual</item>
         <item name="android:layout_margin">@dimen/min_margin</item>
         <item name="android:textColor">@color/text_resp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">25sp</item>
     </style>
 
     <style name="report_labels">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">casual</item>
         <item name="android:textColor">@color/text_label</item>
-        <item name="android:textSize">@dimen/report_tile</item>
-        <item name="android:layout_margin">18sp</item>
+        <item name="android:textSize">@dimen/report_labels</item>
+        <item name="android:layout_margin">@dimen/min_margin</item>
     </style>
 
     <!--  Style for report page generated pdf-->
@@ -95,7 +96,8 @@
         <item name="android:padding">@dimen/min_padding</item>
         <item name="android:layout_margin">@dimen/min_margin</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">15sp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMaxTextSize">25sp</item>
     </style>
 
     <style name="text_commit_page_resp">
@@ -130,7 +132,5 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
     </style>
-
-
 
 </resources>

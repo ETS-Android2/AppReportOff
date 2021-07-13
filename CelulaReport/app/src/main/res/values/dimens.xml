@@ -9,6 +9,7 @@
     <dimen name="padding_from_label">20dp</dimen>
     <dimen name="padding_start">20dp</dimen>
     <dimen name="report_tile">25sp</dimen>
+    <dimen name="report_labels">20sp</dimen>
     <dimen name="report_page_tile">28sp</dimen>
     <dimen name="min_report">20sp</dimen>
     <dimen name="height_img_cardview">100dp</dimen>

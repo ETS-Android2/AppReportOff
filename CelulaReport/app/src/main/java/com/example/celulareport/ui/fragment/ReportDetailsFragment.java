@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -83,8 +84,6 @@ public class ReportDetailsFragment extends Fragment {
     private long mReportID;
     private ReportEntity reportEntity;
 
-    private View viewRoot;
-
     //for permission
     private ActivityResultLauncher<String> requestPermissionLauncher;
 
@@ -139,8 +138,43 @@ public class ReportDetailsFragment extends Fragment {
 
         //Setup toolbar
         SetupToolbar(view);
+    }
 
-        viewRoot = view;
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.report_details_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+
+            case R.id.ic_delete:
+                deleteReport(mReportID);
+                requireActivity().getSupportFragmentManager()
+                        .popBackStackImmediate();
+                Toast.makeText(requireContext(), "Delete action clicked", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.ic_details_share:
+                shareWithPermissionGranted();
+                return true;
+
+            case R.id.ic_edit:
+
+                Toast.makeText(requireContext(), "Edit action clicked", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void  getViewObjects(@NonNull View v){
@@ -190,6 +224,8 @@ public class ReportDetailsFragment extends Fragment {
     }
 
     public void deleteReport(long reportId){
+
+        //TODO: Create dialog alert
         mViewModel.deleteById(reportId);
     }
 
@@ -202,39 +238,6 @@ public class ReportDetailsFragment extends Fragment {
         mCollapsing.setExpandedTitleGravity(Gravity.BOTTOM);
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.report_details_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    boolean isFavorite = false;
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-
-        super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()){
-
-            case R.id.ic_delete:
-                Toast.makeText(requireContext(), "Delete action clicked", Toast.LENGTH_SHORT).show();
-                return true;
-
-            case R.id.ic_details_share:
-                shareWithPermissionGranted();
-                return true;
-
-            case R.id.ic_edit:
-                Toast.makeText(requireContext(), "Edit action clicked", Toast.LENGTH_SHORT).show();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @NonNull
     private ActivityResultLauncher<String> getPermissionCallback() {

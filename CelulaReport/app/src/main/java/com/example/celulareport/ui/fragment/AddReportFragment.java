@@ -284,8 +284,6 @@ public class AddReportFragment extends Fragment {
         String estudo;
         String commenits;
 
-        //Intent to send to another activity
-        Intent replyIntent = new Intent();
         if (IsValidReport()){
 
             celula = Objects.requireNonNull(celulaTextInput.getText()).toString();
@@ -314,7 +312,7 @@ public class AddReportFragment extends Fragment {
 
             mVieModel.Insert(reportEntity);
 
-            Toast.makeText(getContext(), R.string.report_saved, Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), R.string.report_saved, Toast.LENGTH_SHORT).show();
             //finish fragment
             FragmentManager fragmentManager = requireActivity()
                     .getSupportFragmentManager();

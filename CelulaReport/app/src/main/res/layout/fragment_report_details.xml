@@ -74,7 +74,7 @@
                 style="@style/report_labels"
                 android:text="@string/label_lider"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/txt_lider"
@@ -193,7 +193,8 @@
             <TextView
                 android:id="@+id/txt_commits"
                 style="@style/text_resp"
-                android:ems="10"
+                android:layout_height="wrap_content"
+                android:ems="20"
                 android:enabled="false"
                 android:scrollbars="vertical"
                 android:nestedScrollingEnabled="true"

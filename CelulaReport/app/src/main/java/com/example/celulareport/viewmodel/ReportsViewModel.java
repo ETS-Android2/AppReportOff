@@ -19,6 +19,10 @@ public class ReportsViewModel extends AndroidViewModel {
         this.mRepository = ReportsRepository.getInstance(application);
     }
 
+    public void update(ReportEntity reportEntity){
+        this.mRepository.update(reportEntity);
+    }
+
     public LiveData<ReportEntity> ReportSelected(final long mReportID){
         return mRepository.ReportSelected(mReportID);
     }

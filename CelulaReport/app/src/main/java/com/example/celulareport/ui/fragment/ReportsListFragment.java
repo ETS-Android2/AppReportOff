@@ -1,6 +1,6 @@
 package com.example.celulareport.ui.fragment;
 
-import android.annotation.SuppressLint;
+
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -28,8 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.celulareport.R;
-import com.example.celulareport.db.model.ReportCard;
-import com.example.celulareport.db.model.ReportEntity;
 import com.example.celulareport.util.Constraint;
 import com.example.celulareport.ui.adapter.CardAdapter;
 import com.example.celulareport.viewmodel.ReportListViewModel;
@@ -38,11 +36,6 @@ import java.util.List;
 
 import static androidx.appcompat.view.ActionMode.*;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ReportsListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ReportsListFragment extends Fragment implements CardAdapter.OnCardClickListener, CardAdapter.OnCardLongCLickListener {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

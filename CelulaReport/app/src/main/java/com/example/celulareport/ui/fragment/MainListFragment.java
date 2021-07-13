@@ -52,13 +52,14 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
 
         //setup toolbar to change color when expanding or collapsing
         SetupToolbar(viewRoot);
-
-        //getting floating button
-        FloatingActionButton mFButtonAddReport = viewRoot.findViewById(R.id.fb_add_report);
-        onCLickFloatingButton(mFButtonAddReport);
         //inflate recycleView
         SetupRecycler(viewRoot);
 
+        //floating button
+        FloatingActionButton mFButtonAddReport = viewRoot.findViewById(R.id.fb_add_report);
+        mFButtonAddReport.setOnClickListener((view)-> {
+            onCLickFloatingButton();
+        });
         return viewRoot;
     }
 
@@ -67,7 +68,7 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
         mToolbar = (Toolbar) v.findViewById(R.id.main_toolbar);
         mToolbar.setTitle(R.string.main_title);
         mToolbar.setLogo(R.drawable.ic_report);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity)requireActivity()).setSupportActionBar(mToolbar);
         mCollapsing = (CollapsingToolbarLayout) v.findViewById(R.id.CollapsingToolbar);
 
         mCollapsing.setCollapsedTitleTextAppearance(R.style.Toolbar_TitleText_Collapsed_main);
@@ -116,14 +117,17 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
 
     @Override
     public void onLineClick(int position, TextView textMonth) {
-        Log.d(TAG, "OnLineClick: clicked,line "+position);
+        //Log.d(TAG, "OnLineClick: clicked,line "+position);
         //make transition between Activity
         ReportsListFragment fragment = ReportsListFragment.newInstance(Constraint.MONTHS[position]);
-        getActivity()
+        requireActivity()
                 .getSupportFragmentManager()
                 .beginTransaction()
                 .setReorderingAllowed(true)
-                .setCustomAnimations(R.anim.enter_fade_in, R.anim.exit_fade_in, R.anim.enter_fade_in, R.anim.exit_fade_in)
+                .setCustomAnimations(R.anim.enter_fade_in,
+                        R.anim.exit_fade_in,
+                        R.anim.enter_fade_in,
+                        R.anim.exit_fade_in)
                 .replace(R.id.main_container, fragment, fragment.getClass().getName())
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -131,23 +135,20 @@ public class MainListFragment extends Fragment implements LineAdapter.OnLineClic
 
     }
 
-    public void onCLickFloatingButton(FloatingActionButton mFButtonAddReport){
+    public void onCLickFloatingButton(){
 
-        mFButtonAddReport.setOnClickListener(v -> {
-
-            AddReportFragment fragment = new AddReportFragment();
-            getActivity()
-                    .getSupportFragmentManager()
-                    .beginTransaction().setReorderingAllowed(true)
-                    .setCustomAnimations(R.anim.enter_slide_up,
-                            R.anim.exit_fade_freeze,
-                            R.anim.enter_fade_freeze,
-                            R.anim.exit_slide_down)
-                    .replace(R.id.main_container, fragment, fragment.getClass().getName())
-                    .addToBackStack(null)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit();
-        });
+        AddReportFragment fragment = new AddReportFragment();
+        requireActivity()
+                .getSupportFragmentManager()
+                .beginTransaction().setReorderingAllowed(true)
+                .setCustomAnimations(R.anim.enter_slide_up,
+                        R.anim.exit_fade_freeze,
+                        R.anim.enter_fade_freeze,
+                        R.anim.exit_slide_down)
+                .replace(R.id.main_container, fragment, fragment.getClass().getName())
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 
 }

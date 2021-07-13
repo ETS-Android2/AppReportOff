@@ -53,6 +53,10 @@ public class ReportsRepository {
         mExecutors.diskIO().execute(() -> mReportDatabase.reportDAO().Insert(reportEntity));
     }
 
+    public void update(ReportEntity reportEntity){
+        mExecutors.diskIO().execute(() -> mReportDatabase.reportDAO().update(reportEntity));
+    }
+
     public void deleteAll(){
         mExecutors.diskIO().execute(() -> mReportDatabase.reportDAO().deleteAll());
     }

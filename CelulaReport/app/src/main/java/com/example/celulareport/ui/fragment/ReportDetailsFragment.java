@@ -143,7 +143,7 @@ public class ReportDetailsFragment extends Fragment {
         viewRoot = view;
     }
 
-    public void  getViewObjects(View v){
+    public void  getViewObjects(@NonNull View v){
         mLiderText = v.findViewById(R.id.txt_lider);
         mColiderText = v.findViewById(R.id.txt_colider);
         mAnfitriaoText = v.findViewById(R.id.txt_anfitriao);
@@ -162,10 +162,8 @@ public class ReportDetailsFragment extends Fragment {
     }
 
     public void registerReportSelected(ReportsViewModel viewModel){
-        viewModel.ReportSelected(mReportID).observe(getViewLifecycleOwner(), reportEntity -> {
-            //Adding report data in the view
-            addingReportDetails(reportEntity);
-        });
+        //get report selected
+        viewModel.ReportSelected(mReportID).observe(getViewLifecycleOwner(), this::addingReportDetails);
     }
 
 
@@ -187,10 +185,18 @@ public class ReportDetailsFragment extends Fragment {
         Log.i("ReportDetailsFragment", "Commit Text: "+mReport.getComentarios());
     }
 
+    public void updateReport(ReportEntity reportEntity){
+        mViewModel.update(reportEntity);
+    }
+
+    public void deleteReport(long reportId){
+        mViewModel.deleteById(reportId);
+    }
+
     private void SetupToolbar(View v){
 
         mToolbar.setLogo(R.drawable.ic_report);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity)requireActivity()).setSupportActionBar(mToolbar);
         mCollapsing.setCollapsedTitleTextAppearance(R.style.Toolbar_TitleText_Collapsed_details);
         mCollapsing.setExpandedTitleTextAppearance(R.style.Toolbar_TitleText_Expanded_details);
         mCollapsing.setExpandedTitleGravity(Gravity.BOTTOM);
@@ -214,14 +220,16 @@ public class ReportDetailsFragment extends Fragment {
 
         switch(item.getItemId()){
 
-            case R.id.ic_favorite_details:
-                Toast.makeText(getContext(), "Favorite action clicked", Toast.LENGTH_SHORT).show();
-                isFavorite = !isFavorite;
-                item.setIcon(isFavorite?R.drawable.ic_favorite:R.drawable.ic_favorite_border);
+            case R.id.ic_delete:
+                Toast.makeText(requireContext(), "Delete action clicked", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.ic_details_share:
                 shareWithPermissionGranted();
+                return true;
+
+            case R.id.ic_edit:
+                Toast.makeText(requireContext(), "Edit action clicked", Toast.LENGTH_SHORT).show();
                 return true;
         }
 

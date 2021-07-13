@@ -11,8 +11,8 @@
     <string name="nome_do_lider">Nome do líder</string>
     <string name="nome_do_co_lider">Nome do Colider</string>
     <string name="nome_do_anfitriao">Nome do anfitrião</string>
-    <string name="membros">Membros</string>
-    <string name="quantidade_de_visitantes">Visitantes</string>
+    <string name="membros">N° de Membros</string>
+    <string name="quantidade_de_visitantes">N° de Visitantes</string>
     <string name="oferta">Oferta</string>
     <string name="data_da_reuinao">Data da reuinão</string>
     <string name="estudo_da_celula">Versículo Bíblico</string>
@@ -54,5 +54,14 @@
     <string name="report_not_found">\"Relório não existe no banco de dados \"</string>
     <string name="pdf_generated">Um Arquivo de PDF foi gerado para o compartilhamento. </string>
     <string name="img_repor_descr">report icon</string>
+    <string name="helper_data_meeting">aperte o ícone para escolher a data *</string>
+    <string name="helper_required">obrigatório*</string>
+    <string name="helper_member">quantidade de membros*</string>
+    <string name="helper_guest">quantidade de visitantes na célula*</string>
+    <string name="helper_oferta">Oferta arrecadada na célula*</string>
+    <string name="favorite_icon">Relatório Enviado?</string>
+    <string name="share_icon">Compartilhar</string>
+    <string name="edit_icon">editar relatório</string>
+    <string name="delete_icon">excluir relatório</string>
 
 </resources>

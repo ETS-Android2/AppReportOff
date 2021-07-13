@@ -11,12 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,25 +35,14 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 public class AddReportFragment extends Fragment {
 
     private static final String TAG = "ReportPageActivity";
-    public static final String EXTRA_CELULA = "com.example.celulareport.CELULA";
-    public static final String EXTRA_LIDER = "com.example.celulareport.LIDER";
-    public static final String EXTRA_COLIDER = "com.example.celulareport.COLIDER";
-    public static final String EXTRA_ANFITRIAO = "com.example.celulareport.ANFITRIAO";
-    public static final String EXTRA_DATA = "com.example.celulareport.DATA";
-    public static final String EXTRA_MEMBROS = "com.example.celulareport.MEMBROS";
-    public static final String EXTRA_VISITANTES = "com.example.celulareport.VISITANTES";
-    public static final String EXTRA_OFERTA = "com.example.celulareport.OFERTA";
-    public static final String EXTRA_COMENTARIOS = "com.example.celulareport.COMENTARIOS";
 
     private Toolbar mToolbar;
-
-    //Buttom to save reports information filled in
-    private Button saveButton;
 
     //Variables related to reports attributes
     private TextInputEditText celulaTextInput;
@@ -62,8 +55,6 @@ public class AddReportFragment extends Fragment {
     private TextInputEditText estudoTextInput;
     private TextInputEditText visitantesTextInput;
 
-    private TextInputLayout dateTextInputLayout;
-
     private TextInputEditText commitsTextInput;
 
     //date
@@ -74,6 +65,12 @@ public class AddReportFragment extends Fragment {
     ReportListViewModel mVieModel;
     public AddReportFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -104,8 +101,23 @@ public class AddReportFragment extends Fragment {
         mVieModel = new ViewModelProvider(requireActivity()).get(ReportListViewModel.class);
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.add_report_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == R.id.save_icon){
+            saveReport();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void SetupToolbar(){
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity)requireActivity()).setSupportActionBar(mToolbar);
     }
 
     //Initializing Views objects and Set listeners
@@ -121,7 +133,7 @@ public class AddReportFragment extends Fragment {
 
 
         dateTextInput = v.findViewById(R.id.date_reuniao_edit);
-        dateTextInputLayout = v.findViewById(R.id.layout_data_reuniao);
+        TextInputLayout dateTextInputLayout = v.findViewById(R.id.layout_data_reuniao);
 
         membrosTextInput = v.findViewById(R.id.n_membros_edit);
 
@@ -132,8 +144,6 @@ public class AddReportFragment extends Fragment {
         estudoTextInput = v.findViewById(R.id.estudo_edit);
 
         commitsTextInput = v.findViewById(R.id.commits_edit);
-
-        saveButton = v.findViewById(R.id.bt_salvar);
 
         //Adding masks
         dateTextInput.addTextChangedListener(MaskEditText.mask(dateTextInput, MaskEditText.FORMAT_DATE));
@@ -177,50 +187,36 @@ public class AddReportFragment extends Fragment {
                 chooseDate(dateTextInput);
             }
         });
-
-        //When click in save button
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SaveReport();
-
-            }
-        });
     }
 
     //Get date and put it in a EditText of 'oferta'
     private DatePickerDialog.OnDateSetListener getDateSetListener(TextInputEditText inputEditText){
-        DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                //update current date to choose date
-                mYear = year;
-                mMonth = month;
-                mDay = dayOfMonth;
+        return (view, year, month, dayOfMonth) -> {
+            //update current date to choose date
+            mYear = year;
+            mMonth = month;
+            mDay = dayOfMonth;
 
-                String strMonth = "";
-                String strDayOfMonth = "";
+            String strMonth = "";
+            String strDayOfMonth = "";
 
-                //adding zero in left from unit when it needed
-                month = month+1;
-                if(month < 10){
-                    strMonth = "0"+month;
-                }else
-                    strMonth = String.valueOf(month);
+            //adding zero in left from unit when it needed
+            month = month+1;
+            if(month < 10){
+                strMonth = "0"+month;
+            }else
+                strMonth = String.valueOf(month);
 
-                if(dayOfMonth < 10){
-                    strDayOfMonth = "0"+dayOfMonth;
-                }else
-                    strDayOfMonth = String.valueOf(dayOfMonth);
+            if(dayOfMonth < 10){
+                strDayOfMonth = "0"+dayOfMonth;
+            }else
+                strDayOfMonth = String.valueOf(dayOfMonth);
 
-                //clear text before update
-                inputEditText.setText("");
-                //update text to date choose
-                inputEditText.setText(strDayOfMonth + strMonth + year);
-            }
+            //clear text before update
+            inputEditText.setText("");
+            //update text to date choose
+            inputEditText.setText(strDayOfMonth + strMonth + year);
         };
-
-        return mDateSetListener;
     }
 
     //Validating filled report
@@ -275,7 +271,7 @@ public class AddReportFragment extends Fragment {
     }
 
     //save report information in the the database
-    private void SaveReport(){
+    private void saveReport(){
 
         String celula;
         String lider;
@@ -301,7 +297,7 @@ public class AddReportFragment extends Fragment {
             visitantes = Objects.requireNonNull(visitantesTextInput.getText()).toString();
             oferta = Objects.requireNonNull(ofertaTextInput.getText()).toString();
             estudo = Objects.requireNonNull(estudoTextInput.getText()).toString();
-            commenits = commitsTextInput.getText().toString().isEmpty()? "" : commitsTextInput.getText().toString();
+            commenits = Objects.requireNonNull(commitsTextInput.getText()).toString().isEmpty()? "" : commitsTextInput.getText().toString();
 
             ReportEntity reportEntity = new ReportEntity();
 
@@ -318,9 +314,9 @@ public class AddReportFragment extends Fragment {
 
             mVieModel.Insert(reportEntity);
 
-            Toast.makeText(getContext(), R.string.report_saved, Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(), R.string.report_saved, Toast.LENGTH_SHORT).show();
             //finish fragment
-            FragmentManager fragmentManager = getActivity()
+            FragmentManager fragmentManager = requireActivity()
                     .getSupportFragmentManager();
             fragmentManager.popBackStackImmediate();
 
@@ -337,17 +333,15 @@ public class AddReportFragment extends Fragment {
         //Initializing listener to get date and put it in editText
         DatePickerDialog.OnDateSetListener mDateSetListener = getDateSetListener(dateTextField);
 
-        DatePickerDialog dialogPicker = new DatePickerDialog(getContext(),
+        DatePickerDialog dialogPicker = new DatePickerDialog(requireContext(),
                 AlertDialog.THEME_HOLO_DARK,
                 mDateSetListener,
                 mYear,
                 mMonth,
                 mDay);
-
+        //AlertDialog.THEME_HOLO_DARK
         dialogPicker.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         //show date dialog in the view
         dialogPicker.show();
     }
-
-
 }

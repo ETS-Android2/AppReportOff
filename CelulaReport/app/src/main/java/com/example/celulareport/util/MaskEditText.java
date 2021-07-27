@@ -1,11 +1,13 @@
 package com.example.celulareport.util;
 
+import android.location.Location;
 import android.text.Editable;
 import android.text.TextWatcher;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public abstract class MaskEditText {
 
@@ -73,8 +75,8 @@ public abstract class MaskEditText {
      * @return TextWatcher money mask
      */
     public static TextWatcher mask(final TextInputEditText ediTxt) {
-        //get format number in a context country
-        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        //get format number in country format
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.forLanguageTag("BR"));
 
         return new TextWatcher() {
 
@@ -119,6 +121,5 @@ public abstract class MaskEditText {
 
     public static String unmask(final String s) {
         return s.replaceAll("[^\\d]", "");
-        //return s.replaceAll("[.]", "").replaceAll("[-]", "").replaceAll("[/]", "").replaceAll("[(]", "").replaceAll("[ ]","").replaceAll("[:]", "").replaceAll("[)]", "");
     }
 }

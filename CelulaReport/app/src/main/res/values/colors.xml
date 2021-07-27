@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#263238</color>
-    <color name="secondaryColor">#37474F</color>
+    <color name="secondaryColor">#334149</color>
+    <color name="colorOnSurface">#1A1E20</color>
+    <color name="colorSurface">#0F1517</color>
     <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#7E7876</color>
-    <color name="layoutBackground">#546E7A</color>
+    <color name="layoutBackground">#445259</color>
+    <color name="cardItem">#263238</color>
     <color name="text_app">#B0BEC5</color>
     <color name="report_icon">#B0BEC5</color>
     <color name="floating_button">#B0BEC5</color>
-    <color name="text_label">#37474F</color>
+    <color name="text_label">#263238</color>
     <color name="text_resp">#B0BEC5</color>
     <color name="card_title_color">#EBEBEB</color>
     <color name="details_title_color">#EBEBEB</color>

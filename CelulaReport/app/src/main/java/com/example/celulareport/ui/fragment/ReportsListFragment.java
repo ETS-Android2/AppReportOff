@@ -231,7 +231,7 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
             public void onDestroyActionMode(ActionMode mode) {
 
                 //change color back to the normal
-                mCardView.setCardBackgroundColor(Color.parseColor("#455A64"));
+                mCardView.setCardBackgroundColor(Color.parseColor("#263238"));
                 mCardView = null;
                 mActionMode = null;
             }
@@ -285,7 +285,7 @@ public class ReportsListFragment extends Fragment implements CardAdapter.OnCardC
             mActionMode = ((AppCompatActivity)requireActivity()).startSupportActionMode(mCallback);
             longClickPosition = position;
             this.mCardView = mCardView;
-            this.mCardView.setCardBackgroundColor(Color.parseColor("#37474F"));
+            this.mCardView.setCardBackgroundColor(Color.parseColor("#171717"));
             this.mCardView.setSelected(true);
 
 

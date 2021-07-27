@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="3dp"
-    android:layout_marginVertical="8dp"
-    android:backgroundTint="@color/secondaryColor"
+    android:layout_marginTop="2dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginEnd="4dp"
+    android:backgroundTint="@color/cardItem"
     android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="@dimen/cardview_default_radius"
     app:cardElevation="@dimen/cardview_default_elevation"
@@ -25,7 +28,7 @@
             android:textColor="@color/text_app"
             android:gravity="center_horizontal"
             android:layout_gravity="center_vertical"
-            android:text="Month"
+            tools:text="Month"
             />
 
     </LinearLayout>

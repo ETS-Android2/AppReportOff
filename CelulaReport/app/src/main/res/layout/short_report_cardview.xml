@@ -11,7 +11,7 @@
     app:cardMaxElevation="5dp"
     app:cardCornerRadius="@dimen/cardview_radius"
     app:cardElevation="@dimen/cardview_elevation"
-    app:cardBackgroundColor="@color/secundaryColor"
+    app:cardBackgroundColor="@color/secondaryColor"
     app:cardPreventCornerOverlap="false"
     >
 

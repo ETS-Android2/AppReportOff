@@ -74,7 +74,7 @@
         <item name="android:fontFamily">casual</item>
         <item name="android:layout_margin">@dimen/min_margin</item>
         <item name="android:textColor">@color/text_resp</item>
-        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">14sp</item>
         <item name="autoSizeMaxTextSize">25sp</item>
     </style>
 

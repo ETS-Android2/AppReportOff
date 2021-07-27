@@ -194,7 +194,7 @@
                 android:id="@+id/txt_commits"
                 style="@style/text_resp"
                 android:layout_height="wrap_content"
-                android:ems="20"
+                android:ems="17"
                 android:enabled="false"
                 android:scrollbars="vertical"
                 android:nestedScrollingEnabled="true"
